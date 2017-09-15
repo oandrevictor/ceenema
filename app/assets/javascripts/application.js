@@ -17,4 +17,5 @@
 //= require angular-rails-templates
 //= require angular-resource/angular-resource
 //= require angular-flash/dist/angular-flash
+//= require ./app.coffee
 // = require_tree .

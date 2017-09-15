@@ -18,3 +18,20 @@
 @import "bootstrap-sass-official/assets/stylesheets/bootstrap-sprockets";
 @import "bootstrap-sass-official/assets/stylesheets/bootstrap";
 
+.center-cropped {
+  width: 200px;
+  height: 200px;
+  background-position: center center;
+  background-repeat: no-repeat;
+}
+
+.col-centered {
+  float: none;
+  margin-right: auto;
+  margin-left: auto;
+}
+
+.object-fit_cover {
+  object-fit: cover
+}
+

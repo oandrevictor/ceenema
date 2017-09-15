@@ -2,6 +2,8 @@
 <html>
   <head>
     <title>Ceenema</title>
+    <base href="/">
+
     <%= csrf_meta_tags %>
 
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
@@ -9,6 +11,8 @@
   </head>
 
   <body>
-    <%= yield %>
+  <div ng-app="ceenema">
+  <%= yield %>
+  </div>
   </body>
 </html>
