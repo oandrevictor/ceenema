@@ -1,1 +1,1 @@
-json.(movie, :id, :name, :genre, :sinopse)
+json.(movie, :id, :name, :genre, :sinopse, :imdb_id , :runtime)

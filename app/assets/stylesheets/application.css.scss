@@ -17,6 +17,22 @@
 
 @import "bootstrap-sass-official/assets/stylesheets/bootstrap-sprockets";
 @import "bootstrap-sass-official/assets/stylesheets/bootstrap";
+@import "bootstrap-sass-official/assets/stylesheets/bootstrap";
+@import "angular-material/modules/scss/angular-material.css";
+@import "angular-treasure-overlay-spinner/src/treasure-overlay-spinner.css";
+@import url('https://fonts.googleapis.com/css?family=Work+Sans');
+
+.h1{
+  font-family: 'Work Sans', sans-serif;
+}
+body{
+  font-family: 'Work Sans', sans-serif;
+}
+
+.p{
+  font-family: 'Work Sans', sans-serif;
+}
+
 
 .center-cropped {
   width: 200px;
@@ -25,13 +41,35 @@
   background-repeat: no-repeat;
 }
 
-.col-centered {
-  float: none;
-  margin-right: auto;
-  margin-left: auto;
-}
 
 .object-fit_cover {
   object-fit: cover
+}
+
+
+/* centered columns styles */
+.row-centered {
+  text-align:center;
+}
+
+
+.featuredMovie{
+  width: 100%;
+  height:250px;
+  background-repeat: no-repeat;
+  background-position: center;
+  margin: 1em;
+  background-color: black;
+}
+.movieTitle{
+  font-size: 22px;
+  margin-top: 0.5em;
+}
+
+.centered-and-cropped { object-fit: cover }
+
+a:hover, a:visited, a:link, a:active
+{
+  text-decoration: none;
 }
 

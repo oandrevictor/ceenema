@@ -13,9 +13,14 @@
 //= require rails-ujs
 //= require jquery
 // = require angular/angular
+// = require angular-aria/angular-aria
+// = require angular-animate/angular-animate
 //= require angular-route/angular-route
 //= require angular-rails-templates
 //= require angular-resource/angular-resource
 //= require angular-flash/dist/angular-flash
-//= require ./app.coffee
+//= require angular-material
+//= require angular-material/angular-material.js
+//= require angular-treasure-overlay-spinner/src/treasure-overlay-spinner.js
+//= require ./app.js
 // = require_tree .

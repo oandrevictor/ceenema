@@ -5,6 +5,8 @@
     "bootstrap-sass-official": "latest",
     "angular-route": "latest",
     "angular-resource": "latest",
-    "angular-flash": "latest"
+    "angular-flash": "latest",
+    "angular-material": "latest",
+    "angular-treasure-overlay-spinner": "latest"
   }
 }
