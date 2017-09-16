@@ -20,7 +20,7 @@
 //= require angular-resource/angular-resource
 //= require angular-flash/dist/angular-flash
 //= require angular-material
-//= require angular-material/angular-material
-//= require angular-treasure-overlay-spinner/src/treasure-overlay-spinner
+//= require angular-material/angular-material.js
+//= require angular-treasure-overlay-spinner/src/treasure-overlay-spinner.js
 //= require ./app.js
 // = require_tree .
