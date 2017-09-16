@@ -1,18 +1,19 @@
-<div layout="row" >
+<div layout="row" class="navbar" layout-align="center center" ng-controller="NavbarController as main" >
 
-<header flex="30" class="row">
-    <h1 class="text-center">Ceenema</h1>
-</header>
-<form flex="20" ng-submit="search(keywords)" layout-align="end center">
-<div layout="row" >
-            <md-input-container  flex="80" md-no-float class="md-block" >
-              <input type="text" name="keywords" ng-model="keywords" placeholder="Pesquisar"/>
-            </md-input-container>
-              <md-button flex="20" ng-click="search(keywords)" class="md-button" aria-label="More" flex="50"> Search </md-button>
+  <header flex="15" class="row" layout-align="center center" >
+    <img  class= "logo" src=<%= image_url("logo600.png") %> width="100%"  ng-click="home()" >
+  </header>
+    <md-menu-divider flex="40" class="row" layout-align="center center" >
+    </md-menu-divider>
+    <form flex="20" ng-submit="search(keywords)" layout-align="end center">
+      <div layout="row" >
+        <md-input-container  flex="80" md-no-float class="md-block" >
+          <input type="text" name="keywords" ng-model="keywords" placeholder="Pesquisar"/>
+        </md-input-container>
+        <md-button flex="20" ng-click="search(keywords)" class="md-button" aria-label="More" flex="50"> Search </md-button>
+      </div>
+    </form>
 </div>
-</form>
-</div>
-  <hr>
 <treasure-overlay-spinner active='spinner.active' ng-if="movies">
 
 <div class="container">

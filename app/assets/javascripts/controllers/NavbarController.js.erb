@@ -1,0 +1,10 @@
+controllers = angular.module('controllers');
+controllers.controller("NavbarController", [ '$scope', '$routeParams', '$resource','$location', 'flash',
+    function($scope,$routeParams,$resource, $location, flash) {
+
+        $scope.home = function () {
+            $location.path("/");
+            $location.search({});
+        }
+}]
+);

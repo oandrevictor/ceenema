@@ -43,10 +43,12 @@ ceenema.config([ '$routeProvider', '$locationProvider',
 
 var run = function($scope) {
     $scope.spinner = {active: true};
+
 }
 
 ceenema.run(run);
 run.$inject = ['$rootScope'];
+
 
 
 controllers = angular.module('controllers',[])

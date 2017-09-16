@@ -22,6 +22,7 @@
 @import "angular-treasure-overlay-spinner/src/treasure-overlay-spinner.css";
 @import url('https://fonts.googleapis.com/css?family=Work+Sans');
 
+//Text CSS
 .h1{
   font-family: 'Work Sans', sans-serif;
 }
@@ -33,7 +34,11 @@ body{
   font-family: 'Work Sans', sans-serif;
 }
 
+// Image CSS
+.logo{
+  margin-left: 3em;
 
+}
 .center-cropped {
   width: 200px;
   height: 200px;
@@ -41,15 +46,12 @@ body{
   background-repeat: no-repeat;
 }
 
-
-.object-fit_cover {
+.centered-and-cropped {
   object-fit: cover
 }
 
-
-/* centered columns styles */
-.row-centered {
-  text-align:center;
+.object-fit_cover {
+  object-fit: cover
 }
 
 
@@ -66,7 +68,19 @@ body{
   margin-top: 0.5em;
 }
 
-.centered-and-cropped { object-fit: cover }
+//Layout
+.navbar{
+  background-repeat: no-repeat;
+  background-position: center;
+  background-image: asset-data-url("interstellar.jpg");
+  object-fit: cover;
+  background-color: white;
+}
+/* centered columns styles */
+.row-centered {
+  text-align:center;
+}
+
 
 a:hover, a:visited, a:link, a:active
 {
