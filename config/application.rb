@@ -12,8 +12,6 @@ module ReadAnalytics
     config.load_defaults 5.1
 
         config.assets.paths << Rails.root.join("vendor","assets","bower_components")
-        config.assets.paths << Rails.root.join("vendor","assets","bower_components","angular-material","modules","scss")
-
         config.assets.paths << Rails.root.join("vendor","assets","bower_components","bootstrap-sass-official","assets","fonts")
 
         config.assets.precompile << %r(.*.(?:eot|svg|ttf|woff|woff2)$)
