@@ -13,14 +13,14 @@ class MoviesController < ApplicationController
   end
 
   def create
-        @movie = Movie.new(params.require(:movie).permit(:name,:sinopse, :imdb_id, :imgurl,  :genre, :runtime, :release))
+        @movie = Movie.new(params.require(:movie).permit(:name,:sinopse, :imdb_id, :imgurl,  :genre, :runtime, :release, :trailer))
         @movie.save
         render 'show', status: 201
       end
 
     def update
         movie = Movie.find(params[:id])
-        movie.update_attributes(params.require(:movie).permit(:name,:sinopse, :runtime, :genre, :imdb_id, :imgurl, :release))
+        movie.update_attributes(params.require(:movie).permit(:name,:sinopse, :runtime, :genre, :imdb_id, :imgurl, :release, :trailer))
         head :no_content
     end
 

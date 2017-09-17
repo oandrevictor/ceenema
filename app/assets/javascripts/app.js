@@ -7,7 +7,12 @@ ceenema = angular.module('ceenema',[
     'angular-flash.service',
     'angular-flash.flash-alert-directive',
     'treasure-overlay-spinner',
-    'ksSwiper'
+    'ksSwiper',
+    "ngSanitize",
+    "com.2fdevs.videogular",
+    "com.2fdevs.videogular.plugins.controls",
+    "com.2fdevs.videogular.plugins.overlayplay",
+    "com.2fdevs.videogular.plugins.poster"
 
 ])
 

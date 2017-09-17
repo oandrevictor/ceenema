@@ -24,5 +24,10 @@
 //= require angular-treasure-overlay-spinner/src/treasure-overlay-spinner.js
 //= require swiper/dist/js/swiper
 //= require angular-swiper/dist/angular-swiper
+//= require videogular/videogular
+//= require videogular-controls/vg-controls
+//= require videogular-overlay-play/vg-overlay-play
+//= require videogular-poster/vg-poster
+//=  require angular-sanitize/angular-sanitize
 //= require ./app.js
 // = require_tree .

@@ -2,8 +2,8 @@ controllers = angular.module('controllers');
 
 //This controller gets the information about a specific movie and gives it back to the scope.
 
-controllers.controller("MovieController", [ '$scope', '$routeParams', '$resource','$location', 'flash', '$http', '$window',
-function($scope,$routeParams,$resource, $location, flash, $http, $window) {
+controllers.controller("MovieController", [ '$scope', '$routeParams', '$resource','$location', 'flash', '$http', '$window', "$sce",
+function($scope,$routeParams,$resource, $location, flash, $http, $window, $sce) {
     var movie_preloaded = false;
     //Resource -> Used for CRUD operations
     Movie = $resource('/movies/:movieId', {movieId: "@id", format: 'json'},
@@ -22,12 +22,27 @@ function($scope,$routeParams,$resource, $location, flash, $http, $window) {
         document.getElementById("imdbOverlay").style.width = "0%";
     };
 
+    var loadVideo = function()
+    {
+        $scope.config = {
+            sources: [
+                {
+                    src: $sce.trustAsResourceUrl($scope.movie.trailer),
+                    type: "video/mp4"
+                }
+            ],
+            theme: "videogular-themes-default/videogular.css",
+        }
+    }
+
+
     //Checks if the controller is handling a new movie or a existing
     if ($routeParams.movieId) {
         Movie.get({movieId: $routeParams.movieId}, function (movie) {
                 $scope.movie = movie;
                 $scope.spinner.active = false;
-                $scope.image = movie.imgurl; //load image of the movie
+                $scope.image = movie.imgurl;
+                loadVideo()//load image of the movie
             }, //sets the movie case it exists
             function (httpResponse) {
                 $scope.movie = null;
@@ -73,6 +88,7 @@ function($scope,$routeParams,$resource, $location, flash, $http, $window) {
             $scope.movie.sinopse = imdb_response.storyline;
             $scope.movie.runtime = parseInt(imdb_response['length']);
             $scope.movie.genre = imdb_response.genre[0];
+            $scope.movie.trailer = imdb_response.trailer[0].videoUrl;
             $scope.image = $scope.movie.imgurl;
             $scope.closeNav();
         }, function errorCallback(response) {
@@ -136,13 +152,6 @@ function($scope,$routeParams,$resource, $location, flash, $http, $window) {
     $scope.back = function(){
         $window.history.back();
     };
-
-
-
-
-
-
-
 
 
 

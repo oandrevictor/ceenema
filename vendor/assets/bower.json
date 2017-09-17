@@ -15,6 +15,7 @@
     "videogular-buffering": "latest",
     "videogular-overlay-play": "latest",
     "videogular-poster": "latest",
-    "videogular-angulartics": "latest"
+    "videogular-angulartics": "latest",
+    "angular-sanitize": "latest"
   }
 }

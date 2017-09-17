@@ -61,6 +61,11 @@
         <md-datepicker  md-hide-icons="calendar" ng-model="movie.release" md-placeholder="Enter date" style="fill: #000000"></md-datepicker>
       </md-input-container>
     </div>
+    <div layout="row"  layout-align="center center"  >
+    <md-input-container flex="60" class="md-block" >
+      <input type="text" name="Trailer" ng-model="movie.trailer" placeholder="Trailer"/>
+    </md-input-container>
+    </div>
 
     <div layout="row"  layout-align="center center"  >
       <md-button  ng-click="cancel()" class="md-button" aria-label="More" > Cancel </md-button>
