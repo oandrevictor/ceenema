@@ -1,28 +1,25 @@
-<div layout="row" class="navbar" layout-align="center center" ng-controller="NavbarController as main" >
+<div ng-include="'navbar.html'"></div>
 
-  <header flex="15" class="row" layout-align="center center" >
-    <img  class= "logo" src=<%= image_url("logo600.png") %> width="100%"  ng-click="home()" >
-  </header>
-    <md-menu-divider flex="40" class="row" layout-align="center center" >
-    </md-menu-divider>
-    <form flex="20" ng-submit="search(keywords)" layout-align="end center">
-      <div layout="row" >
-        <md-input-container  flex="80" md-no-float class="md-block" >
-          <input type="text" name="keywords" ng-model="keywords" placeholder="Pesquisar"/>
-        </md-input-container>
-        <md-button flex="20" ng-click="search(keywords)" class="md-button" aria-label="More" flex="50"> Search </md-button>
-      </div>
-    </form>
-</div>
+
+
+<!-- Main Page Carousel Featured Movies !-->
+<ks-swiper-container ng-if="movies" on-ready="onReadySwiper(swiper)"  initial-slide="1" loop="false" show-nav-buttons="true" slides-per-view="1" space-between="1" pagination-is-active="true" pagination-clickable="true">
+  <ks-swiper-slide class="swiper-slide" ng-repeat="movie in movies">
+    <img class= "centered-and-cropped" ng-src={{posters[movie.imdb_id]}} height="300" width="100%" href ng-click="view(movie.id)" >
+  </ks-swiper-slide>
+</ks-swiper-container>
+
+
+
+
 <treasure-overlay-spinner active='spinner.active' ng-if="movies">
 
 <div class="container">
 
 <div  layout="row" layout-align="center center" class="row center-block" ng-if="movies">
         <h1 class="text-center h2">{{movies.length}} Movies Found</h1>
-        <div ng-repeat="movie in movies">
-
-            <section class="col-md-6">
+   <div ng-repeat="movie in movies">
+     <section class="col-md-6">
                 <div class="featuredMovie">
                     <img class= "centered-and-cropped" ng-src={{posters[movie.imdb_id]}} height="200" width="100%" href ng-click="view(movie.id)">
                     <p class="movieTitle col-md-12 text-left "><a style ="color: white" href ng-click="view(movie.id)" >{{movie.name}}</a></p>

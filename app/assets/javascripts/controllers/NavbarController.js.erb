@@ -2,6 +2,10 @@ controllers = angular.module('controllers');
 controllers.controller("NavbarController", [ '$scope', '$routeParams', '$resource','$location', 'flash',
     function($scope,$routeParams,$resource, $location, flash) {
 
+        $scope.search = function (keywords) {
+            $location.path("/search").search('keywords', keywords)
+        };
+
         $scope.home = function () {
             $location.path("/");
             $location.search({});

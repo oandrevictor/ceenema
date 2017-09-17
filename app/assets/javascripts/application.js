@@ -22,5 +22,7 @@
 //= require angular-material
 //= require angular-material/angular-material.js
 //= require angular-treasure-overlay-spinner/src/treasure-overlay-spinner.js
+//= require swiper/dist/js/swiper
+//= require angular-swiper/dist/angular-swiper
 //= require ./app.js
 // = require_tree .

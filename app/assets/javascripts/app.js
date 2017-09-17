@@ -1,12 +1,13 @@
 ceenema = angular.module('ceenema',[
-  'templates',
-  'ngRoute',
-  'ngResource',
-  'ngMaterial',
-  'controllers',
-  'angular-flash.service',
-  'angular-flash.flash-alert-directive',
-  'treasure-overlay-spinner'
+    'templates',
+    'ngRoute',
+    'ngResource',
+    'ngMaterial',
+    'controllers',
+    'angular-flash.service',
+    'angular-flash.flash-alert-directive',
+    'treasure-overlay-spinner',
+    'ksSwiper'
 
 ])
 
@@ -33,7 +34,14 @@ ceenema.config([ '$routeProvider', '$locationProvider',
               templateUrl: "form.html",
               controller: 'MovieController'
           }
+          ).when('/search' ,
+          {
+              templateUrl: "search.html",
+              controller: 'SearchController'
+          }
           )
+
+
 
       //$locationProvider.html5Mode(true)
       //$locationProvider.hashPrefix('')

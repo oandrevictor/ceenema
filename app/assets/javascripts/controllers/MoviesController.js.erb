@@ -5,70 +5,39 @@ var controllers = angular.module('ceenema');
 #Retrieves the result and send to the scope
 */
 movies = []
-controllers.controller("MoviesController", [ '$scope', '$routeParams', '$location', '$resource', '$http',
-    function($scope,$routeParams,$location, $resource, $http) {
+controllers.controller("MoviesController", [ '$scope', '$routeParams', '$location', '$resource', '$http','$window',
+    function($scope,$routeParams,$location, $resource, $http,$window) {
 
-        $scope.posters = {}
-        $scope.keywords = $routeParams.keywords;
 
-        $scope.search = function (keywords) {
-            $location.path("/").search('keywords', keywords)
-        };
+        angular.element(function() {
+            //initialize swiper when document ready
+            $scope.mySwiper = new Swiper('.swiper-container', {
+                // Optional parameters
+                direction: 'horizontal',
+                //loop: true,
+                mousewheelControl: true,
+                paginationClickable: true,
+                keyboardControl: true,
 
-        Movie = $resource('/movies/:movieId', {movieId: "@id", format: 'json'});
+                // If we need pagination
+                pagination: '.swiper-pagination',
 
-        if ($routeParams.keywords) {
-            keywords = $routeParams.keywords.toLowerCase();
-            $scope.movies = movies.filter(function (movie) {
-                movie.name.toLowerCase().indexOf(keywords) != -1
-            });
-            Movie.query({keywords: $routeParams.keywords},
-                (function (results) {
-                    $scope.movies = results
-                    getPosters();
-
-                }))
-            console.log($scope.movies.length)
-        }
-        else {
-            $scope.movies = []
-        }
-
-        $scope.view = function (movieId) {
-            $location.path("/movies/" + movieId)
-        }
-
-        var postersLoaded = 0;
-
-        var getPosters = function() {
-            $scope.movies.forEach(function (m) {
-                imdb_id= m.imdb_id;
-                imgur = ("<%= image_url("bgblue.jpg") %>"); // Set the default poster. The image_url is required once the deployment happens
-                $scope.posters[imdb_id] = imgur;
-                updatePoster(imdb_id); // send the imdb_id of the poster to be update
+                // Navigation arrows
+                nextButton: '.swiper-button-next',
+                prevButton: '.swiper-button-prev',
             })
-        }
+        });
 
-        var isEverythingLoaded = function(){
-            postersLoaded +=1;
-            postersRequired = Object.keys($scope.posters).length;
-            return (postersLoaded >= postersRequired )
+
+        $scope.onReadySwiper = function (swiper) {
+            swiper.initObservers();
+            swiper.updateSlidesSize()
         };
 
-        var updatePoster = function(imdb_id){
-            $http({
-                method: 'GET',
-                url: 'http://www.theimdbapi.org/api/movie?movie_id='+ imdb_id
-            }).then(function successCallback(response) {
-                if (isEverythingLoaded()) $scope.spinner.active =false;
-                imgur = response.data.poster.large;
-                $scope.posters[imdb_id] = imgur;
-
-            }, function errorCallback(response) {
-                if (isEverythingLoaded()) $scope.spinner.active =false;
-            });
-
-        };
+        $scope.$on('finishEvent',function(){
+            if ($scope.mySwiper.update){
+                $scope.mySwiper.update();
+            } })
 
 
     }])

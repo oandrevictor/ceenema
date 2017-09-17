@@ -2,8 +2,8 @@ controllers = angular.module('controllers');
 
 //This controller gets the information about a specific movie and gives it back to the scope.
 
-controllers.controller("MovieController", [ '$scope', '$routeParams', '$resource','$location', 'flash',
-function($scope,$routeParams,$resource, $location, flash) {
+controllers.controller("MovieController", [ '$scope', '$routeParams', '$resource','$location', 'flash', '$http',
+function($scope,$routeParams,$resource, $location, flash, $http) {
     //Resource -> Used for CRUD operations
     Movie = $resource('/movies/:movieId', {movieId: "@id", format: 'json'},
         {
@@ -15,6 +15,9 @@ function($scope,$routeParams,$resource, $location, flash) {
     if ($routeParams.movieId) {
         Movie.get({movieId: $routeParams.movieId}, function (movie) {
                 $scope.movie = movie
+                $scope.image = "<%= image_url("bgblue.jpg") %>";
+                getImage();
+
             }, //sets the movie case it exists
             function (httpResponse) {
                 $scope.movie = null;
@@ -26,18 +29,20 @@ function($scope,$routeParams,$resource, $location, flash) {
     }
     ;
 
-
-    $scope.edit = function () {
-        $location.path("/movies/" + $scope.movies.id + "/edit");
+    var getImage = function(){
+        $http({
+            method: 'GET',
+            url: 'http://www.theimdbapi.org/api/movie?movie_id=' + $scope.movie.imdb_id
+        }).then(function successCallback(response) {
+            $scope.image = response.data.poster.large;
+            $scope.$emit('finishEvent');
+        }, function errorCallback(response) {
+        });
     }
-    $scope.cancel = function(){
-        if ($scope.movie.id) {
-            $location.path("/movies/" + $scope.movie.id);
-        } else {
-            $location.path("/")
-        }
-    }
 
+
+
+    // Used to create and update movies
     $scope.save = function(){
         onError = function(_httpResponse) {
             flash.error = "Something went wrong"
@@ -67,10 +72,30 @@ function($scope,$routeParams,$resource, $location, flash) {
 
 
 
+    //Navigation Controls
+
+    $scope.edit = function () {
+        $location.path("/movies/" + $scope.movies.id + "/edit");
+    }
+
+    $scope.cancel = function(){
+        if ($scope.movie.id) {
+            $location.path("/movies/" + $scope.movie.id);
+        } else {
+            $location.path("/")
+        }
+    }
 
     //Go-back function
     $scope.back = function(){
         $location.path("/");
     };
+
+
+
+
+
+
+
 }
 ])
