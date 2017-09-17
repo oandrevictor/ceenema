@@ -8,6 +8,13 @@
     "angular-flash": "latest",
     "angular-material": "latest",
     "angular-treasure-overlay-spinner": "latest",
-    "angular-swiper": "latest"
+    "angular-swiper": "latest",
+    "videogular": "latest",
+    "videogular-themes-default": "latest",
+    "videogular-controls": "latest",
+    "videogular-buffering": "latest",
+    "videogular-overlay-play": "latest",
+    "videogular-poster": "latest",
+    "videogular-angulartics": "latest"
   }
 }

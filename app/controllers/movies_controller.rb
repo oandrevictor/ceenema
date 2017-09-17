@@ -13,7 +13,7 @@ class MoviesController < ApplicationController
   end
 
   def create
-        @movie = Movie.new(params.require(:movie).permit(:name,:sinopse, :imdb_id, :imgurl, :duration, :genre, :runtime, :release))
+        @movie = Movie.new(params.require(:movie).permit(:name,:sinopse, :imdb_id, :imgurl,  :genre, :runtime, :release))
         @movie.save
         render 'show', status: 201
       end
