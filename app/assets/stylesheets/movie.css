@@ -10,7 +10,7 @@
 
 
 .movie-cover{
-    padding-bottom: 0px;
+    padding-bottom: 0px !important;
     background-position: center center;
     height: 20em;
 }
