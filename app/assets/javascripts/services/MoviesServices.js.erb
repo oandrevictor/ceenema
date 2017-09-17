@@ -1,0 +1,19 @@
+angular.module('ceenema')
+    .service('MoviesServices', function() {
+        var movies = [];
+        var getMovies = function(){
+            return movies;
+        };
+
+        var addMovie = function(movie){
+            movies.push(movie);
+        };
+
+        var setMovies = function(newmovies){
+            movies = movies;
+        };
+
+
+
+
+    });

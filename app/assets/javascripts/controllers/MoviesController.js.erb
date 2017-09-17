@@ -7,26 +7,35 @@ var controllers = angular.module('ceenema');
 movies = []
 controllers.controller("MoviesController", [ '$scope', '$routeParams', '$location', '$resource', '$http','$window',
     function($scope,$routeParams,$location, $resource, $http,$window) {
+        Movie = $resource('/movies/:movieId', {movieId: "@id", format: 'json'});
+
+
+        Movie.query(
+            (function (results) {
+                $scope.movies = results
+            }))
+
+        //opens the movie page
+        $scope.view = function (movieId) {
+            $location.path("/movies/" + movieId)
+        }
+
+        // Swiper Configuration:
 
         angular.element(function() {
             //initialize swiper when document ready
             $scope.mySwiper = new Swiper('.swiper-container', {
-                // Optional parameters
                 direction: 'horizontal',
-                //loop: true,
                 mousewheelControl: true,
                 paginationClickable: true,
                 keyboardControl: true,
-
                 // If we need pagination
                 pagination: '.swiper-pagination',
-
                 // Navigation arrows
                 nextButton: '.swiper-button-next',
                 prevButton: '.swiper-button-prev',
             })
         });
-
 
         $scope.onReadySwiper = function (swiper) {
             swiper.initObservers();

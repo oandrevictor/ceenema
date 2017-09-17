@@ -1,48 +1,72 @@
-<aside class="flash row">
-  <article flash-alert duration="0" active-class="alert" class="col-md-6 col-md-offset-3">
-    {{flash.message}}
-  </article>
-</aside>
-<form class="form-horizontal" role="form" class="edit-user">
-  <div class="form-group" ng-class="{'has-warning has-feedback':errors.name}">
-    <label
-    for="name"
-    class="col-md-2 control-label col-md-offset-2">
-      Name
-    </label>
-    <div class="col-md-5">
-      <input type="text" name="name" class="form-control" placeholder="e.g. Baked Alaska" ng-model="movie.name">
-    </div>
-  </div>
-  <div class="form-group" ng-class="{'has-warning has-feedback':errors.name}">
-    <label
-    for="instructions"
-    class="col-md-2 control-label col-md-offset-2">
-      Instructions
-    </label>
-    <div class="col-md-5">
-      <textarea name="instructions" class="form-control" ng-model='movie.sinopse' placeholder="e.g. Flambé for 20 seconds">
-      </textarea>
-    </div>
-  </div>
+<!-- The overlay -->
 
-  <div class="form-group" ng-class="{'has-warning has-feedback':errors.name}">
-    <label
-    for="instructions"
-    class="col-md-2 control-label col-md-offset-2">
-      Instructions
-    </label>
-    <div class="col-md-5">
-      <textarea name="imdb" class="form-control" ng-model='movie.imdb_id' placeholder="e.g. tt">
-      </textarea>
+<div id="imdbOverlay" class="overlay">
+
+  <!-- Button to close the overlay navigation -->
+  <div class="closebtn" ng-click="closeNav()">&times;</div>
+  <!-- Overlay content -->
+  <div layout="column"  layout-align="center center"  style="height: 100%">
+    <h3>You can write the movie's imdb id and we will load the information for you.</h3>
+    <md-input-container  class="md-block"  >
+      <input type="text" name="ID IMDB" ng-model="movie.imdb_id" placeholder="ID IMDB"/>
+    </md-input-container>
+    <md-button  ng-click="preload()" class="md-button" aria-label="More"> Load </md-button>
+
+  </div>
+</div>
+
+
+<!-- Navbar !-->
+<div ng-include="'navbar.html'"></div>
+<treasure-overlay-spinner active='spinner.active' >
+  <div class="jumbotron movie-cover"   back-img="{{image}}">
+    <div class="gradient-layer">
+      <div class="container"  style="height: 100%">
+        <div layout="row" layout-align="space-between end"  style="height: 100%">
+          <h1 class="mainTitle">{{movie.name}} </h1>
+        </div>
+      </div>
     </div>
   </div>
-  <div class="form-group">
-    <div class="col-md-offset-2 col-md-3">
-      <button class="btn btn-default" ng-click="cancel()"> Cancel</button>
+<div class="container">
+  <form  ng-submit="save()" >
+    <div layout="row"  layout-align="center center"  >
+
+    <md-input-container flex="40" class="md-block" >
+        <input type="text" name="Title" ng-model="movie.name" placeholder="Title"/>
+    </md-input-container>
+
+    <md-input-container  flex="20" class="md-block" >
+      <input type="text" name="ID IMDB" ng-model="movie.imdb_id" placeholder="ID IMDB"/>
+    </md-input-container>
+
     </div>
-    <div class="col-md-4 text-right">
-      <button class="btn btn-primary" ng-click="save()"> Save </button>
+    <div layout="row"  layout-align="center center"  style="width: 100%">
+
+    <md-input-container   flex="60" class="md-block" style="width: 100%">
+      <textarea  name="Sinopse" md-maxlength="300" rows="3" ng-model="movie.sinopse" placeholder="Sinopse"/>
+    </md-input-container>
     </div>
-  </div>
-</form>
+    <div layout="row"  layout-align="center center"  >
+    <md-input-container   flex="20" class="md-block" >
+      <input type="text" name="Gender" ng-model="movie.genre" placeholder="Genre"/>
+    </md-input-container>
+
+    <md-input-container   flex="20" class="md-block" >
+      <input type="number" name="Runtime" ng-model="movie.runtime" placeholder="Runtime"/>
+    </md-input-container>
+
+      <md-input-container   flex="20" class="md-block" >
+        <label>Release</label>
+        <md-datepicker  md-hide-icons="calendar" ng-model="movie.release" md-placeholder="Enter date" style="fill: #000000"></md-datepicker>
+      </md-input-container>
+    </div>
+
+    <div layout="row"  layout-align="center center"  >
+      <md-button  ng-click="cancel()" class="md-button" aria-label="More" > Cancel </md-button>
+      <md-button  ng-click="save()" class="md-button" aria-label="More" > Save </md-button>
+
+    </div>
+  </form>
+</div>
+</treasure-overlay-spinner>

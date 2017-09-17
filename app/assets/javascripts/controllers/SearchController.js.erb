@@ -22,10 +22,9 @@ controllers.controller("SearchController", [ '$scope', '$routeParams', '$locatio
             Movie.query({keywords: $routeParams.keywords},
                 (function (results) {
                     $scope.movies = results
-                    getPosters();
+                    $scope.spinner.active = false;
 
                 }))
-            console.log($scope.movies.length)
         }
         else {
             Movie.query(
@@ -39,37 +38,8 @@ controllers.controller("SearchController", [ '$scope', '$routeParams', '$locatio
             $location.path("/movies/" + movieId)
         }
 
-        var postersLoaded = 0;
 
-        var getPosters = function () {
-            $scope.movies.forEach(function (m) {
-                imdb_id = m.imdb_id;
-                imgur = "<%= image_url("bgblue.jpg") %>"; // Set the default poster. The image_url is required once the deployment happens
-                $scope.posters[imdb_id] = imgur;
-                updatePoster(imdb_id); // send the imdb_id of the poster to be update
-            })
-        }
 
-        var isEverythingLoaded = function () {
-            postersLoaded += 1;
-            postersRequired = Object.keys($scope.posters).length;
-            return (postersLoaded >= postersRequired )
-        };
 
-        var updatePoster = function (imdb_id) {
-            $http({
-                method: 'GET',
-                url: 'http://www.theimdbapi.org/api/movie?movie_id=' + imdb_id
-            }).then(function successCallback(response) {
-                if (isEverythingLoaded()) $scope.spinner.active = false;
-                imgur = response.data.poster.large;
-                $scope.posters[imdb_id] = imgur;
-                $scope.$emit('finishEvent');
-
-            }, function errorCallback(response) {
-                if (isEverythingLoaded()) $scope.spinner.active = false;
-            });
-
-        };
     }]
 );

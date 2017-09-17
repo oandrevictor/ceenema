@@ -25,7 +25,10 @@
 @import "navbar";
 @import "movie";
 
-
+// Color
+md-input-container:not(.md-input-invalid).md-input-focused .md-input {
+  border-color: #2E2F30;
+}
 //Icons
 md-icon svg {
   fill: white;
@@ -54,7 +57,10 @@ a:hover, a:visited, a:link, a:active
 }
 .movieTitle{
   font-size: 22px;
-  margin-top: 0.5em;
+  background-color:rgba(0, 0, 0, 0.5);
+  margin-bottom: 0px;
+  padding-bottom: 0.5em;
+  padding-top: 0.5em;
 }
 
 // Image CSS
@@ -71,15 +77,6 @@ a:hover, a:visited, a:link, a:active
 }
 
 
-.featuredMovie{
-  width: 100%;
-  height:250px;
-  background-repeat: no-repeat;
-  background-position: center;
-  margin: 1em;
-  background-color: black;
-}
-
 
 //Transparency
 .gradient-layer{
@@ -92,12 +89,50 @@ a:hover, a:visited, a:link, a:active
 
 //Layout
 
-
-/* centered columns styles */
-.row-centered {
-  text-align:center;
+.featuredMovie{
+  width: 100%;
+  height:250px;
+  background-position: center;
+  margin: 1em;
+  background-color: black;
+  height: 200px;
 }
 
+
+
+//Overlay
+/* Position the close button (top right corner) */
+/* The Overlay (background) */
+.overlay {
+  /* Height & width depends on how you want to reveal the overlay (see JS below) */
+  height: 100%;
+  width: 0;
+  position: fixed; /* Stay in place */
+  z-index: 99; /* Sit on top */
+  left: 0;
+  top: 0;
+  background-color: rgb(255,255,255); /* Black fallback color */
+  background-color: rgba(255,255,255, 0.9); /* Black w/opacity */
+  overflow-x: hidden; /* Disable horizontal scroll */
+  transition: 0.5s; /* 0.5 second transition effect to slide in or slide down the overlay (height or width, depending on reveal) */
+}
+
+/* Position the content inside the overlay */
+.overlay-content {
+  z-index: 100;
+  position: relative;
+  top: 25%; /* 25% from the top */
+  width: 100%; /* 100% width */
+  text-align: center; /* Centered text/links */
+  margin-top: 30px; /* 30px top margin to avoid conflict with the close button on smaller screens */
+}
+
+.overlay .closebtn {
+  position: absolute;
+  top: 20px;
+  right: 45px;
+  font-size: 60px;
+}
 
 
 // Swiper
@@ -124,6 +159,10 @@ a:hover, a:visited, a:link, a:active
 }
 
 .swiper-slide {
+  height: 300px;
+  width: 100%;
+  background-size: cover;
+  background-position-y: center;
   text-align: center;
   font-size: 18px;
   background: white;

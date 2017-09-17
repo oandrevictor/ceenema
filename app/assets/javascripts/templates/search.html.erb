@@ -2,29 +2,19 @@
 <div ng-include="'navbar.html'"></div>
 
 
-<!-- Main Page Carousel Featured Movies !-->
-<ks-swiper-container ng-if="movies" on-ready="onReadySwiper(swiper)"  initial-slide="1" loop="false" show-nav-buttons="true" slides-per-view="1" space-between="1" pagination-is-active="true" pagination-clickable="true">
-  <ks-swiper-slide class="swiper-slide" ng-repeat="movie in movies">
-    <img class= "centered-and-cropped" ng-src={{posters[movie.imdb_id]}} height="300" width="100%" href ng-click="view(movie.id)" >
-  </ks-swiper-slide>
-</ks-swiper-container>
-
 <!-- Main Content !-->
 <treasure-overlay-spinner active='spinner.active' ng-if="movies">
   <div class="container">
-    <div  layout="row" layout-align="center center" class="row center-block" ng-if="movies">
+    <div  layout="row" layout-align="center center" class="row center-block">
       <h1 class="text-center h2">{{movies.length}} Movies Found</h1>
       <!-- Create card for each movie in the collection !-->
       <div ng-repeat="movie in movies">
         <section class="col-md-6">
-          <div class="featuredMovie">
-            <img class= "centered-and-cropped" ng-src={{posters[movie.imdb_id]}} height="200" width="100%" href ng-click="view(movie.id)">
-            <p class="movieTitle col-md-12 text-left "><a style ="color: white" href ng-click="view(movie.id)" >{{movie.name}}</a></p>
-            <div class="col-md-12 text-left">
-              <p>Info </p>
+          <div class="featuredMovie" back-img="{{movie.imgurl}}" ng-click="view(movie.id)">
+            <div layout="row" layout-align="start end" style="height: 100%">
+            <p class="movieTitle col-md-12 text-left"><a style ="color: white" href ng-click="view(movie.id)" >{{movie.name}}</a></p>
             </div>
           </div>
-
         </section>
       </div>
     </div>

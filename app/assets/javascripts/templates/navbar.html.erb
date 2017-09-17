@@ -1,18 +1,17 @@
 
 <div ng-app="ceenema">
-<div layout="row" class="navbar" layout-align="center center" ng-controller="NavbarController as main" >
+<div layout="row" id='nav_bar' class="navbar" layout-align="space-between center" ng-controller="NavbarController as main" >
 
-  <header flex="15" class="row" layout-align="center center" >
-    <img  class= "logo" src=<%= image_url("logo600.png") %> width="100%"  ng-click="home()" >
+  <header flex="10" class="row" layout-align="start center" >
+    <img  class= "logo" src=<%= image_url("logo600.png") %>  ng-click="home()" >
   </header>
-  <md-menu-divider flex="40" class="row" layout-align="center center" >
-  </md-menu-divider>
-  <form flex="20" ng-submit="search(keywords)" layout-align="end center">
+  <form flex="30" ng-submit="search(keywords)" layout-align="end center">
     <div layout="row" >
-      <md-input-container  flex="80" md-no-float class="md-block" >
+      <md-input-container  flex="40" md-no-float class="md-block" >
         <input type="text" name="keywords" ng-model="keywords" placeholder="Pesquisar"/>
       </md-input-container>
-      <md-button flex="20" ng-click="search(keywords)" class="md-button" aria-label="More" flex="50"> Search </md-button>
+      <md-button flex="10" ng-click="search(keywords)" class="md-button" aria-label="More" flex="50"> Search </md-button>
+
     </div>
   </form>
 </div>

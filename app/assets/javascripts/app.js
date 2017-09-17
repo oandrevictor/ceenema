@@ -54,7 +54,8 @@ ceenema.directive('backImg', function(){
         attrs.$observe('backImg', function(value) {
             element.css({
                 'background-image': 'url(' + value +')',
-                'background-size' : 'cover'
+                'background-size' : 'cover',
+                'background-position-y': 'center'
             });
         });
     };

@@ -4,6 +4,7 @@ controllers = angular.module('controllers');
 
 controllers.controller("MovieController", [ '$scope', '$routeParams', '$resource','$location', 'flash', '$http', '$window',
 function($scope,$routeParams,$resource, $location, flash, $http, $window) {
+    var movie_preloaded = false;
     //Resource -> Used for CRUD operations
     Movie = $resource('/movies/:movieId', {movieId: "@id", format: 'json'},
         {
@@ -12,12 +13,21 @@ function($scope,$routeParams,$resource, $location, flash, $http, $window) {
         }
     );
 
+    //Preloader-overlay functions
+    $scope.openNav = function(){
+        document.getElementById("imdbOverlay").style.width = "100%";
+    }
+    /* Close when  clicks on the "x" symbol inside the overlay */
+    $scope.closeNav = function(){
+        document.getElementById("imdbOverlay").style.width = "0%";
+    };
+
+    //Checks if the controller is handling a new movie or a existing
     if ($routeParams.movieId) {
         Movie.get({movieId: $routeParams.movieId}, function (movie) {
-                $scope.movie = movie
-                $scope.image = "<%= image_url("bgblue.jpg") %>";
-                getImage();
-
+                $scope.movie = movie;
+                $scope.spinner.active = false;
+                $scope.image = movie.imgurl; //load image of the movie
             }, //sets the movie case it exists
             function (httpResponse) {
                 $scope.movie = null;
@@ -25,10 +35,14 @@ function($scope,$routeParams,$resource, $location, flash, $http, $window) {
             }) //sets to null and flash error otherwise
     }
     else {
-        $scope.movie = {}
-    }
-    ;
+        $scope.image = "<%= image_url("bgblue.jpg") %>"; // load default image
+        $scope.spinner.active = false; // nothing is being loaded now.
+        $scope.movie = {};
+        $scope.openNav(); // Show preload option to user;
 
+    };
+
+    // obtains the image-poster of the new movie
     var getImage = function(){
         $http({
             method: 'GET',
@@ -36,10 +50,34 @@ function($scope,$routeParams,$resource, $location, flash, $http, $window) {
         }).then(function successCallback(response) {
             $scope.image = response.data.poster.large;
             $scope.$emit('finishEvent');
+            if (!$scope.movie.id){
+                createNew();
+            }
         }, function errorCallback(response) {
         });
     }
 
+    // Preload the informations of the movie using the imdb api
+    $scope.preload = function(){
+        $scope.spinner.active = true;
+        $http({
+            method: 'GET',
+            url: 'http://www.theimdbapi.org/api/movie?movie_id=' + $scope.movie.imdb_id
+        }).then(function successCallback(response) {
+            movie_preloaded=true;
+            $scope.spinner.active = false;
+            imdb_response = response.data;
+            $scope.movie.imgurl = imdb_response.poster.large;
+            $scope.movie.name = imdb_response.title;
+            $scope.movie.release = new Date(imdb_response.release_date);
+            $scope.movie.sinopse = imdb_response.storyline;
+            $scope.movie.runtime = parseInt(imdb_response['length']);
+            $scope.movie.genre = imdb_response.genre[0];
+            $scope.image = $scope.movie.imgurl;
+            $scope.closeNav();
+        }, function errorCallback(response) {
+        });
+    }
 
 
     // Used to create and update movies
@@ -47,22 +85,33 @@ function($scope,$routeParams,$resource, $location, flash, $http, $window) {
         onError = function(_httpResponse) {
             flash.error = "Something went wrong"
         }
-
         if ($scope.movie.id) {
-            Movie.save($scope.movie)(
-                function (){
+            ($scope.movie.$save)(
+                function (){ // if saving works as expected, redirect to movie page.
                     $location.path("/movies/"+$scope.movie.id)
-                }, // if saving works as expected
-                onError()
-            ) //otherwise
-        }else {
-            Movie.create($scope.movie,
-                function (newMovie){
-                    $location.path("/movies/"+newMovie.id)
-                }, // if creating the new movie works
-                onError()
+                },
+                onError()//otherwise
             )
+        }else {
+            $scope.spinner.active = true;
+            if (!movie_preloaded) {
+                getImage(); // If the movie was not preloaded, get the image from imdb.
+            }else{
+                createNew(); // Otherwise, just save in the database;
+            }
         }
+    }
+
+   // Create New Movie in the database
+    var createNew = function(){
+        $scope.movie.imgurl = $scope.image;
+        Movie.create($scope.movie,
+            function (newMovie){
+                $scope.spinner.active = false;
+                $location.path("/movies/"+newMovie.id)
+            }, // if creating the new movie works
+            onError()
+        )
     }
 
     $scope.delete = function() {
@@ -71,13 +120,11 @@ function($scope,$routeParams,$resource, $location, flash, $http, $window) {
     }
 
 
-
-    //Navigation Controls
+    //Navigation Controls//
 
     $scope.edit = function () {
-        $location.path("/movies/" + $scope.movies.id + "/edit");
+        $location.path("/movies/" + $scope.movie.id + "/edit");
     }
-
     $scope.cancel = function(){
         if ($scope.movie.id) {
             $location.path("/movies/" + $scope.movie.id);
@@ -85,11 +132,14 @@ function($scope,$routeParams,$resource, $location, flash, $http, $window) {
             $location.path("/")
         }
     }
-
     //Go-back function
     $scope.back = function(){
         $window.history.back();
     };
+
+
+
+
 
 
 
