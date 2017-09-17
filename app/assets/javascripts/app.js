@@ -49,6 +49,19 @@ ceenema.config([ '$routeProvider', '$locationProvider',
 
 ])
 
+ceenema.directive('backImg', function(){
+    return function(scope, element, attrs){
+        attrs.$observe('backImg', function(value) {
+            element.css({
+                'background-image': 'url(' + value +')',
+                'background-size' : 'cover'
+            });
+        });
+    };
+});
+
+
+//Spinner Initialization
 var run = function($scope) {
     $scope.spinner = {active: true};
 
@@ -56,7 +69,5 @@ var run = function($scope) {
 
 ceenema.run(run);
 run.$inject = ['$rootScope'];
-
-
 
 controllers = angular.module('controllers',[])

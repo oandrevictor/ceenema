@@ -2,8 +2,8 @@ controllers = angular.module('controllers');
 
 //This controller gets the information about a specific movie and gives it back to the scope.
 
-controllers.controller("MovieController", [ '$scope', '$routeParams', '$resource','$location', 'flash', '$http',
-function($scope,$routeParams,$resource, $location, flash, $http) {
+controllers.controller("MovieController", [ '$scope', '$routeParams', '$resource','$location', 'flash', '$http', '$window',
+function($scope,$routeParams,$resource, $location, flash, $http, $window) {
     //Resource -> Used for CRUD operations
     Movie = $resource('/movies/:movieId', {movieId: "@id", format: 'json'},
         {
@@ -88,7 +88,7 @@ function($scope,$routeParams,$resource, $location, flash, $http) {
 
     //Go-back function
     $scope.back = function(){
-        $location.path("/");
+        $window.history.back();
     };
 
 

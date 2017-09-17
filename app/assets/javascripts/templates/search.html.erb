@@ -1,3 +1,4 @@
+<!-- Navbar !-->
 <div ng-include="'navbar.html'"></div>
 
 
@@ -8,25 +9,19 @@
   </ks-swiper-slide>
 </ks-swiper-container>
 
-
-
-
+<!-- Main Content !-->
 <treasure-overlay-spinner active='spinner.active' ng-if="movies">
-
   <div class="container">
-
     <div  layout="row" layout-align="center center" class="row center-block" ng-if="movies">
       <h1 class="text-center h2">{{movies.length}} Movies Found</h1>
+      <!-- Create card for each movie in the collection !-->
       <div ng-repeat="movie in movies">
         <section class="col-md-6">
           <div class="featuredMovie">
             <img class= "centered-and-cropped" ng-src={{posters[movie.imdb_id]}} height="200" width="100%" href ng-click="view(movie.id)">
             <p class="movieTitle col-md-12 text-left "><a style ="color: white" href ng-click="view(movie.id)" >{{movie.name}}</a></p>
-
             <div class="col-md-12 text-left">
-
-              <!--<button class="btn btn-info">Edit</button>
-              <button class="btn btn-danger">Delete</button>!-->
+              <p>Info </p>
             </div>
           </div>
 

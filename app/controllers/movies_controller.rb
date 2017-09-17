@@ -3,7 +3,7 @@ class MoviesController < ApplicationController
     @movies = if params[:keywords]
                 Movie.where('name ilike ?',"%#{params[:keywords]}%")
               else
-                []
+                Movie.all
               end
   end
 

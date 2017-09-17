@@ -28,7 +28,11 @@ controllers.controller("SearchController", [ '$scope', '$routeParams', '$locatio
             console.log($scope.movies.length)
         }
         else {
-            $scope.movies = []
+            Movie.query(
+                (function (results) {
+                    $scope.movies = results
+                    getPosters();
+                }))
         }
 
         $scope.view = function (movieId) {

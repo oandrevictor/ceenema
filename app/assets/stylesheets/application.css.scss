@@ -21,24 +21,47 @@
 @import "angular-material/modules/scss/angular-material.css";
 @import "angular-treasure-overlay-spinner/src/treasure-overlay-spinner";
 @import url('https://fonts.googleapis.com/css?family=Work+Sans');
+@import url('https://fonts.googleapis.com/css?family=Roboto:300,400,500,700');
+
+//Icons
+//Show-Page
+md-icon svg {
+  fill: white;
+}
 
 //Text CSS
-.h1{
-  font-family: 'Work Sans', sans-serif;
-}
-body{
-  font-family: 'Work Sans', sans-serif;
+
+html,body{
+  font-family: 'Roboto', sans-serif;
+  background-color: white;
+  height: 100%;
+  margin:0;
 }
 
-.p{
-  font-family: 'Work Sans', sans-serif;
+.jumbotron{
+  color:white;
+}
+
+.jumbotron h1{
+  font-size: 40px;
+}
+.movieTitle{
+  font-size: 22px;
+  margin-top: 0.5em;
+}
+
+.mainTitle{
+  font-weight: 500;
+  color: white;
+}
+.mainInfo{
 }
 
 // Image CSS
 .logo{
   margin-left: 3em;
-
 }
+
 .center-cropped {
   width: 200px;
   height: 200px;
@@ -47,12 +70,14 @@ body{
 }
 
 .centered-and-cropped {
+  background-size: cover;
   object-fit: cover
 }
 
 .object-fit_cover {
   object-fit: cover
 }
+
 
 
 .featuredMovie{
@@ -63,19 +88,31 @@ body{
   margin: 1em;
   background-color: black;
 }
-.movieTitle{
-  font-size: 22px;
-  margin-top: 0.5em;
+
+
+//Transparency
+.gradient-layer{
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(to top, rgba(0, 0, 0, 1), rgba(0, 0, 0, 0));
+
 }
 
 //Layout
+.movie-cover{
+  padding-bottom: 0px;
+  background-position: center center;
+  height: 20em;
+}
 .navbar{
-  background-repeat: no-repeat;
   background-position: center;
   background-image: asset-data-url("interstellar.jpg");
   object-fit: cover;
   background-color: white;
+  background-size:cover;
+  margin-bottom:0px;
 }
+
 /* centered columns styles */
 .row-centered {
   text-align:center;
@@ -88,6 +125,7 @@ a:hover, a:visited, a:link, a:active
 }
 
 
+// Swiper
 .swiperCtrlDiv {
   position: relative;
   height: 100%;
@@ -113,7 +151,7 @@ a:hover, a:visited, a:link, a:active
 .swiper-slide {
   text-align: center;
   font-size: 18px;
-  background: lightgrey;
+  background: white;
   /* Center slide text vertically */
   display: -webkit-box;
   display: -ms-flexbox;
