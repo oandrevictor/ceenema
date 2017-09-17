@@ -1,0 +1,16 @@
+/*
+* MOVIE PAGE CSS
+ */
+
+
+.mainTitle{
+    font-weight: 500;
+    color: white;
+}
+
+
+.movie-cover{
+    padding-bottom: 0px;
+    background-position: center center;
+    height: 20em;
+}

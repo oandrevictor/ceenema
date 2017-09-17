@@ -22,9 +22,10 @@
 @import "angular-treasure-overlay-spinner/src/treasure-overlay-spinner";
 @import url('https://fonts.googleapis.com/css?family=Work+Sans');
 @import url('https://fonts.googleapis.com/css?family=Roboto:300,400,500,700');
+@import "navbar.css";
+
 
 //Icons
-//Show-Page
 md-icon svg {
   fill: white;
 }
@@ -36,6 +37,11 @@ html,body{
   background-color: white;
   height: 100%;
   margin:0;
+}
+
+a:hover, a:visited, a:link, a:active
+{
+  text-decoration: none;
 }
 
 .jumbotron{
@@ -50,18 +56,7 @@ html,body{
   margin-top: 0.5em;
 }
 
-.mainTitle{
-  font-weight: 500;
-  color: white;
-}
-.mainInfo{
-}
-
 // Image CSS
-.logo{
-  margin-left: 3em;
-}
-
 .center-cropped {
   width: 200px;
   height: 200px;
@@ -73,11 +68,6 @@ html,body{
   background-size: cover;
   object-fit: cover
 }
-
-.object-fit_cover {
-  object-fit: cover
-}
-
 
 
 .featuredMovie{
@@ -95,34 +85,16 @@ html,body{
   width: 100%;
   height: 100%;
   background: linear-gradient(to top, rgba(0, 0, 0, 1), rgba(0, 0, 0, 0));
-
 }
 
 //Layout
-.movie-cover{
-  padding-bottom: 0px;
-  background-position: center center;
-  height: 20em;
-}
-.navbar{
-  background-position: center;
-  background-image: asset-data-url("interstellar.jpg");
-  object-fit: cover;
-  background-color: white;
-  background-size:cover;
-  margin-bottom:0px;
-}
+
 
 /* centered columns styles */
 .row-centered {
   text-align:center;
 }
 
-
-a:hover, a:visited, a:link, a:active
-{
-  text-decoration: none;
-}
 
 
 // Swiper
