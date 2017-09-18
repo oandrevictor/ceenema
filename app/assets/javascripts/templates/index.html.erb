@@ -11,7 +11,7 @@
 </ks-swiper-container>
 
 <!-- Movie Cards !-->
-  <md-content class="md-padding" >
+  <md-content class="md-padding" layout="row" layout-wrap>
     <div class="col-md-3" ng-repeat="movie in movies">
       <md-card>
         <img ng-src="{{movie.imgurl}}" class="md-card-image" alt="Movie" ng-click="view(movie.id)">
