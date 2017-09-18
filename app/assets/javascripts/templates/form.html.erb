@@ -17,19 +17,24 @@
 
 
 
-<treasure-overlay-spinner active='spinner.active' >
+
   <!-- Movie Cover // Sets to default image is new movie !-->
   <div class="jumbotron movie-cover"   back-img="{{image}}">
     <div class="gradient-layer">
       <div class="container"  style="height: 100%">
         <div layout="row" layout-align="space-between end"  style="height: 100%">
           <h1 class="mainTitle">{{movie.name}} </h1>
+          <md-button class="md-icon-button">
+            <md-icon md-svg-src= <%= asset_url("icons/delete.svg")%> aria-label="favorite" ng-click="showConfirm($event)" style="color:white"></md-icon>
+          </md-button>
         </div>
       </div>
     </div>
   </div>
 
-<div class="container">
+
+<div class="container" >
+
   <!-- Form to create/edit Movie !-->
   <form  ng-submit="save()" >
     <div layout="row"  layout-align="center center"  >
@@ -59,7 +64,7 @@
 
       <md-input-container   flex="20" class="md-block" >
         <label>Release</label>
-        <md-datepicker  md-hide-icons="calendar" ng-model="movie.release" md-placeholder="Enter date" style="fill: #000000"></md-datepicker>
+        <md-datepicker  md-hide-icons="calendar" ng-model="movie.release" md-placeholder="Enter date" ></md-datepicker>
       </md-input-container>
     </div>
     <div layout="row"  layout-align="center center"  >
@@ -71,8 +76,6 @@
     <div layout="row"  layout-align="center center"  >
       <md-button  ng-click="cancel()" class="md-button" aria-label="More" > Cancel </md-button>
       <md-button  ng-click="save()" class="md-button" aria-label="More" > Save </md-button>
-
     </div>
   </form>
 </div>
-</treasure-overlay-spinner>

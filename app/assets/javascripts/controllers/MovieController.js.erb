@@ -2,8 +2,8 @@ controllers = angular.module('controllers');
 
 //This controller gets the information about a specific movie and gives it back to the scope.
 
-controllers.controller("MovieController", [ '$scope', '$routeParams', '$resource','$location', 'flash', '$http', '$window', "$sce",
-function($scope,$routeParams,$resource, $location, flash, $http, $window, $sce) {
+controllers.controller("MovieController", [ '$scope', '$routeParams', '$resource','$location', 'flash', '$http', '$window', "$sce","$mdDialog",
+function($scope,$routeParams,$resource, $location, flash, $http, $window, $sce,  $mdDialog) {
     var movie_preloaded = false;
     //Resource -> Used for CRUD operations
     Movie = $resource('/movies/:movieId', {movieId: "@id", format: 'json'},
@@ -38,11 +38,13 @@ function($scope,$routeParams,$resource, $location, flash, $http, $window, $sce) 
 
     //Checks if the controller is handling a new movie or a existing
     if ($routeParams.movieId) {
+        $scope.spinner.active = true;
         Movie.get({movieId: $routeParams.movieId}, function (movie) {
                 $scope.movie = movie;
                 $scope.spinner.active = false;
                 $scope.image = movie.imgurl;
-                loadVideo()//load image of the movie
+                loadVideo()//load video of the movie
+            $scope.spinner.active=false;
             }, //sets the movie case it exists
             function (httpResponse) {
                 $scope.movie = null;
@@ -82,16 +84,18 @@ function($scope,$routeParams,$resource, $location, flash, $http, $window, $sce) 
             movie_preloaded=true;
             $scope.spinner.active = false;
             imdb_response = response.data;
-            $scope.movie.imgurl = imdb_response.poster.large;
-            $scope.movie.name = imdb_response.title;
-            $scope.movie.release = new Date(imdb_response.release_date);
-            $scope.movie.sinopse = imdb_response.storyline;
-            $scope.movie.runtime = parseInt(imdb_response['length']);
-            $scope.movie.genre = imdb_response.genre[0];
-            $scope.movie.trailer = imdb_response.trailer[0].videoUrl;
-            $scope.image = $scope.movie.imgurl;
+            if(imdb_response.poster) $scope.movie.imgurl = imdb_response.poster.large;
+            if(imdb_response.title) $scope.movie.name = imdb_response.title;
+            if(imdb_response.release_date) $scope.movie.release = new Date(imdb_response.release_date);
+            if(imdb_response.storyline) $scope.movie.sinopse = imdb_response.storyline;
+            if(imdb_response['length']) $scope.movie.runtime = parseInt(imdb_response['length']);
+            if(imdb_response.genre) $scope.movie.genre = imdb_response.genre[0];
+            console.log(imdb_response.trailer)
+            if(imdb_response.trailer[0]) $scope.movie.trailer = imdb_response.trailer[0].videoUrl;
+            if($scope.movie.imgurl) $scope.image = $scope.movie.imgurl;
             $scope.closeNav();
         }, function errorCallback(response) {
+            $scope.closeNav();
         });
     }
 
@@ -131,17 +135,28 @@ function($scope,$routeParams,$resource, $location, flash, $http, $window, $sce) 
     }
 
     $scope.delete = function() {
-        $scope.movie.$delete()
-        $scope.back()
+        $scope.spinner.active = true;
+        ($scope.movie.$delete)(
+            function (){ // if saving works as expected, redirect to movie page.
+                $scope.back()
+                $scope.spinner.active=false;
+            },
+            function(){
+                $scope.back()
+                $scope.spinner.active=false;
+            }//otherwise
+        )
+
     }
-
-
-    //Navigation Controls//
 
     $scope.edit = function () {
         $location.path("/movies/" + $scope.movie.id + "/edit");
     }
+
+    //Navigation Controls//
+
     $scope.cancel = function(){
+        $scope.spinner.active = false;
         if ($scope.movie.id) {
             $location.path("/movies/" + $scope.movie.id);
         } else {
@@ -168,6 +183,25 @@ function($scope,$routeParams,$resource, $location, flash, $http, $window, $sce) 
             }
         });
     };
+
+    // CONFIRMATION DIALOG (DELETE)
+    $scope.showConfirm = function(ev) {
+        // Appending dialog to document.body to cover sidenav in docs app
+        var confirm = $mdDialog.confirm()
+            .title('Would you like to delete this movie?')
+            .textContent('This action is permanent and can not be undone.')
+            .ariaLabel('Lucky day')
+            .targetEvent(ev)
+            .ok('Delete')
+            .cancel('Cancel');
+
+        $mdDialog.show(confirm).then(function() {
+            $scope.delete();
+        }, function() {
+            $scope.status = 'You decided to keep the movie.';
+        });
+    };
+
 
 
 

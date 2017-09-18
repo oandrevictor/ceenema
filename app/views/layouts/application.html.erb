@@ -3,6 +3,7 @@
   <head>
     <title>Ceenema</title>
     <base href="/">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 
     <%= csrf_meta_tags %>
 
@@ -11,16 +12,21 @@
   </head>
 
   <body>
-  <div ng-app="ceenema">
-    <div flex layout-fill>
+  <div ng-app="ceenema" autoscroll="true">
+    <div layout="column" flex layout-fill style="height: 100vh">
       <!-- Navbar !-->
       <md-toolbar md-scroll-shrink>
         <div ng-include="'navbar.html'"></div>
       </md-toolbar>
 
       <!-- Fill page with the template content !-->
-      <md-content flex style="height: 100vh;" >
-      <%= yield %>
+      <md-content flex layout-fill style="height:100vh " >
+        <treasure-overlay-spinner active='spinner.active'>
+
+        <%= yield %>
+        </treasure-overlay-spinner>
+        <div class="endFooter" layout="row" layout-align="center center"> Images and Videos Provided by IMDB</div>
+        </div>
       </md-content>
 
     </div>

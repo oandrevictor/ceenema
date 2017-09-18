@@ -1,0 +1,24 @@
+<div ng-app="ceenema">
+<div layout="row" id='nav_bar' class="navbar" layout-align="space-between center" ng-controller="NavbarController as main" >
+  <header flex="10" class="row" layout-align="start center" >
+<!-- Site Logo!-->
+    <img  class= "logo" src=/assets/logo600-1e871d528f9d76ca486af716a6e3238d79c59a1f935a5348294cc4c9e5b70f54.png  ng-click="home()" >
+  </header>
+  <form flex="20" ng-submit="search(keywords)" >
+    <div layout="row" >
+      <md-input-container   md-no-float class="md-block" >
+        <input type="text" name="keywords" ng-model="keywords" placeholder="Search" />
+      </md-input-container>
+
+      <!-- The layout center center is used to put the icon in the center !-->
+      <div layout="row" layout-align="center center">
+      <md-button class="md-icon-button"  ng-click="search(keywords)" class="md-button" aria-label="More"  >
+        <img style="width: 24px; height: 24px;" src=/assets/icons/search48-9aed9e6d9242b590acb81434343fd2a1adab7e5e9f2b6fcc7ef3d991334d118d.png   >
+        </md-button>
+      </div>
+    </div>
+
+  </form>
+</div>
+    </div>
+

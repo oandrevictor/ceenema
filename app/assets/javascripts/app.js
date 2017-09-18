@@ -12,8 +12,7 @@ ceenema = angular.module('ceenema',[
     "com.2fdevs.videogular",
     "com.2fdevs.videogular.plugins.controls",
     "com.2fdevs.videogular.plugins.overlayplay",
-    "com.2fdevs.videogular.plugins.poster"
-
+    "com.2fdevs.videogular.plugins.poster",
 ])
 
 ceenema.config([ '$routeProvider', '$locationProvider',
@@ -55,6 +54,8 @@ ceenema.config([ '$routeProvider', '$locationProvider',
 
 ])
 
+
+// Directive created to help fix Object-fit incompatiblity (Edge)
 ceenema.directive('backImg', function(){
     return function(scope, element, attrs){
         attrs.$observe('backImg', function(value) {
@@ -77,6 +78,18 @@ var run = function($scope) {
 
 ceenema.run(run);
 run.$inject = ['$rootScope'];
+
+var f2 = function($rootScope, $window,$anchorScroll, $location){
+    $rootScope.$on("$routeChangeSuccess", function () {
+        $('html,body').scrollTop(0);
+        $anchorScroll();
+
+    })
+
+};
+ceenema.run(f2);
+
+
 
 
 

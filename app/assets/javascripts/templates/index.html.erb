@@ -1,40 +1,68 @@
 
-
-
-<treasure-overlay-spinner active='spinner.active'>
 <!-- Main Page Carousel Featured Movies !-->
 <ks-swiper-container ng-if="movies" on-ready="onReadySwiper(swiper)"  initial-slide="1" loop="false" show-nav-buttons="true" slides-per-view="1" space-between="1" pagination-is-active="false" pagination-clickable="false">
   <ks-swiper-slide class="swiper-slide" back-img="{{movie.imgurl}}" ng-repeat="movie in movies" ng-click="view(movie.id)">
     <div class="gradient-layer" layout="row" layout-align="start end">
-      <h1 class="mainTitle">{{movie.name}} </h1>    </div>
+      <div class="container">
+      <h1 class="mainTitle">{{movie.name}} </h1>
+      </div>
+    </div>
   </ks-swiper-slide>
 </ks-swiper-container>
 
-  <!-- Movie Cards !-->
+<!-- Movie Cards !-->
   <md-content class="md-padding" >
     <div class="col-md-3" ng-repeat="movie in movies">
       <md-card>
-        <img ng-src="{{movie.imgurl}}" class="md-card-image" alt="Washed Out">
+        <img ng-src="{{movie.imgurl}}" class="md-card-image" alt="Movie" ng-click="view(movie.id)">
         <md-card-actions layout="row" layout-align="end center">
-          <p>{{movie.name}}</p>
+
+          <div class="col-md-8">
+          <h3 class="cardTitle">{{movie.name}}</h3>
+          </div>
+
+          <!-- Card buttons !-->
+          <div class="col-md-2">
           <md-button class="md-icon-button" aria-label="Share">
             <md-icon md-svg-src=<%= asset_url("icons/edit.svg")%> aria-label="favorite" ng-click="edit(movie.id)"></md-icon>
           </md-button>
-          <md-button class="md-icon-button" aria-label="Favorite">
-            <md-icon md-svg-src=<%= asset_url("icons/favorite.svg")%> ></md-icon>
-          </md-button>
-          <md-button class="md-icon-button" aria-label="Settings">
-            <md-icon md-svg-src=<%= asset_url("icons/chevron.svg")%> ng-click="view(movie.id)"></md-icon>
-          </md-button>
+          </div>
+          <div class="col-md-2">
+          </div>
+
         </md-card-actions>
 
       </md-card>
     </div>
 
+<!-- Special card: Create a new Movie !-->
+    <div class="col-md-3" >
+      <md-card>
+        <!-- Poster is the default image !-->
+        <img ng-src="<%= image_url("bgblue.jpg")%>" class="md-card-image" alt="Movie" ng-click="create()">
+        <md-card-actions layout="row" layout-align="end center">
+
+          <div class="col-md-8">
+            <h3 class="cardTitle">Add New Movie</h3>
+          </div>
+
+          <div class="col-md-2">
+            <md-button class="md-icon-button" aria-label="Share">
+              <md-icon md-svg-src=<%= asset_url("icons/add.svg")%> aria-label="favorite" ng-click="create()"></md-icon>
+            </md-button>
+          </div>
+          <div class="col-md-2">
+          </div>
+
+
+
+        </md-card-actions>
+
+      </md-card>
+    </div>
 
   </md-content>
 
 
-</treasure-overlay-spinner>
 
 

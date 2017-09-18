@@ -7,26 +7,32 @@ var controllers = angular.module('ceenema');
 movies = []
 controllers.controller("MoviesController", [ '$scope', '$routeParams', '$location', '$resource', '$http','$window',
     function($scope,$routeParams,$location, $resource, $http,$window) {
+    // Our resource to acess the movies (As api)
         Movie = $resource('/movies/:movieId', {movieId: "@id", format: 'json'});
+        //We are still loading the movies, so the spinner is active
         $scope.spinner.active = true;
 
+        // Retrieves all the movies
         Movie.query(
             (function (results) {
                 $scope.movies = results
-                $scope.spinner.active = false;
-                $scope.$emit('finishedLoading');
+                $scope.$emit('finishedLoading'); // Alert the Swiper
             }))
 
-        //opens the movie page
+        // Opens the movie page
         $scope.view = function (movieId) {
             $location.path("/movies/" + movieId)
         }
+        // Go to the path to edit a movie given the id
         $scope.edit = function (movieId) {
             $location.path("/movies/" + movieId+ "/edit");
         }
+        // Go to the path to create a new movie
+        $scope.create = function(){
+            $location.path("/movies/new")
+        }
 
         // Swiper Configuration:
-
         angular.element(function() {
             //initialize swiper when document ready
             $scope.mySwiper = new Swiper('.swiper-container', {
@@ -35,19 +41,22 @@ controllers.controller("MoviesController", [ '$scope', '$routeParams', '$locatio
                 paginationClickable: true,
                 keyboardControl: true,
                 // If we need pagination
-                pagination: '.swiper-pagination',
+                //pagination: '.swiper-pagination',
                 // Navigation arrows
                 nextButton: '.swiper-button-next',
                 prevButton: '.swiper-button-prev',
             })
         });
 
+        // Keep watching for data modification -> update the swiper
         $scope.onReadySwiper = function (swiper) {
             swiper.initObservers();
             swiper.updateSlidesSize()
         };
 
+        // Update the swiper when all the movies were loaded
         $scope.$on('finishedLoading',function(){
+            $scope.spinner.active = false; // It's all loaded.
             if ($scope.mySwiper.update){
                 $scope.mySwiper.update();
             } })
