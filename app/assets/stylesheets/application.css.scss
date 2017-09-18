@@ -21,6 +21,12 @@
 @import "angular-material/modules/scss/angular-material";
 @import "angular-treasure-overlay-spinner/src/treasure-overlay-spinner";
 @import "videogular-themes-default/videogular";
+@import url('https://fonts.googleapis.com/css?family=Work+Sans');
+@import url('https://fonts.googleapis.com/css?family=Roboto:300,400,500,700');
+@import "navbar";
+@import "movie";
+
+// Videogular Font
 @font-face {
   font-family: 'videogular';
   src: font-url('videogular.eot');
@@ -32,22 +38,25 @@
   font-style: normal;
 }
 
-@import url('https://fonts.googleapis.com/css?family=Work+Sans');
-@import url('https://fonts.googleapis.com/css?family=Roboto:300,400,500,700');
-@import "navbar";
-@import "movie";
 
-// Color
+// Color //
+// Angular Material default input border color
 md-input-container:not(.md-input-invalid).md-input-focused .md-input {
   border-color: #2E2F30;
 }
-//Icons
+
+.jumbotron{
+  color:white;
+}
+
+// Icons //
+// Angular Material default icon color
 md-icon svg {
   fill: white;
 }
 
-//Text CSS
-
+// Text CSS //
+// define main font, background color and fix height problems.
 html,body{
   font-family: 'Roboto', sans-serif;
   background-color: white;
@@ -55,18 +64,20 @@ html,body{
   margin:0;
 }
 
+body {
+  overflow-y: hidden;
+}
+  // / Remove a underline effect
 a:hover, a:visited, a:link, a:active
 {
   text-decoration: none;
 }
 
-.jumbotron{
-  color:white;
-}
-
 .jumbotron h1{
   font-size: 40px;
 }
+
+// Movie-card title
 .movieTitle{
   font-size: 22px;
   background-color:rgba(0, 0, 0, 0.5);
@@ -83,23 +94,14 @@ a:hover, a:visited, a:link, a:active
   background-repeat: no-repeat;
 }
 
-.centered-and-cropped {
-  background-size: cover;
-  object-fit: cover
-}
 
+//Layout
 
-
-//Transparency
 .gradient-layer{
   width: 100%;
   height: 100%;
   background: linear-gradient(to top, rgba(0, 0, 0, 1), rgba(0, 0, 0, 0));
 }
-
-
-
-//Layout
 
 .featuredMovie{
   width: 100%;
@@ -110,23 +112,25 @@ a:hover, a:visited, a:link, a:active
   height: 200px;
 }
 
+.md-toolbar-tools{
+  background-color: rgba(255,255,255,1) !important;
 
+}
 
 //Overlay
-/* Position the close button (top right corner) */
 /* The Overlay (background) */
 .overlay {
-  /* Height & width depends on how you want to reveal the overlay (see JS below) */
   height: 100%;
   width: 0;
   position: fixed; /* Stay in place */
   z-index: 99; /* Sit on top */
   left: 0;
   top: 0;
-  background-color: rgb(255,255,255); /* Black fallback color */
-  background-color: rgba(255,255,255, 0.9); /* Black w/opacity */
+  background-color: rgb(255,255,255);
+  background-color: rgba(255,255,255, 0.9); /* White w/opacity */
   overflow-x: hidden; /* Disable horizontal scroll */
-  transition: 0.5s; /* 0.5 second transition effect to slide in or slide down the overlay (height or width, depending on reveal) */
+  overflow-y: hidden; /* Disable vertical scroll */
+  transition: 0.7s;
 }
 
 /* Position the content inside the overlay */

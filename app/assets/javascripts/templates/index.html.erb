@@ -1,14 +1,16 @@
-<div ng-include="'navbar.html'"></div>
 
 
-<treasure-overlay-spinner active='spinner.active' ng-if="movies">
+
+<treasure-overlay-spinner active='spinner.active'>
 <!-- Main Page Carousel Featured Movies !-->
 <ks-swiper-container ng-if="movies" on-ready="onReadySwiper(swiper)"  initial-slide="1" loop="false" show-nav-buttons="true" slides-per-view="1" space-between="1" pagination-is-active="true" pagination-clickable="true">
   <ks-swiper-slide class="swiper-slide" back-img="{{movie.imgurl}}" ng-repeat="movie in movies" ng-click="view(movie.id)">
-    <h3>{{movie.name}}</h3>
+    <div class="gradient-layer" layout="row" layout-align="start end">
+      <h1 class="mainTitle">{{movie.name}} </h1>    </div>
   </ks-swiper-slide>
 </ks-swiper-container>
 
 
 </treasure-overlay-spinner>
+
 

@@ -8,11 +8,13 @@ movies = []
 controllers.controller("MoviesController", [ '$scope', '$routeParams', '$location', '$resource', '$http','$window',
     function($scope,$routeParams,$location, $resource, $http,$window) {
         Movie = $resource('/movies/:movieId', {movieId: "@id", format: 'json'});
-
+        $scope.spinner.active = true;
 
         Movie.query(
             (function (results) {
                 $scope.movies = results
+                $scope.spinner.active = false;
+                $scope.$emit('finishedLoading');
             }))
 
         //opens the movie page
@@ -42,7 +44,7 @@ controllers.controller("MoviesController", [ '$scope', '$routeParams', '$locatio
             swiper.updateSlidesSize()
         };
 
-        $scope.$on('finishEvent',function(){
+        $scope.$on('finishedLoading',function(){
             if ($scope.mySwiper.update){
                 $scope.mySwiper.update();
             } })

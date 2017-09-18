@@ -1,19 +1,24 @@
-
 <div ng-app="ceenema">
 <div layout="row" id='nav_bar' class="navbar" layout-align="space-between center" ng-controller="NavbarController as main" >
-
   <header flex="10" class="row" layout-align="start center" >
 <!-- Site Logo!-->
     <img  class= "logo" src=<%= image_url("logo600.png") %>  ng-click="home()" >
   </header>
-  <form flex="30" ng-submit="search(keywords)" layout-align="end center">
+  <form flex="20" ng-submit="search(keywords)" >
     <div layout="row" >
-      <md-input-container  flex="40" md-no-float class="md-block" >
-        <input type="text" name="keywords" ng-model="keywords" placeholder="Pesquisar"/>
+      <md-input-container   md-no-float class="md-block" >
+        <input type="text" name="keywords" ng-model="keywords" placeholder="Search"/>
       </md-input-container>
-      <md-button flex="10" ng-click="search(keywords)" class="md-button" aria-label="More" flex="50"> Search </md-button>
 
+      <!-- The layout center center is used to put the icon in the center !-->
+      <div layout="row" layout-align="center center">
+      <md-button class="md-icon-button"  ng-click="search(keywords)" class="md-button" aria-label="More"  >
+        <img style="width: 24px; height: 24px;" src=<%= asset_url("icons/search48.png") %>   >
+        </md-button>
+      </div>
     </div>
+
   </form>
 </div>
-</div>
+    </div>
+

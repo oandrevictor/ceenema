@@ -1,8 +1,7 @@
-<!-- Navbar !-->
-<div ng-include="'navbar.html'"></div>
-
 
 <!-- Main Content !-->
+<md-content flex style="height: 100vh;" md-theme="altTheme">
+
 <treasure-overlay-spinner active='spinner.active' ng-if="movies">
   <div class="container">
       <h1 class="text-center h2">{{movies.length}} Movies Found</h1>
@@ -18,4 +17,3 @@
       </div>
   </div>
 </treasure-overlay-spinner>
-

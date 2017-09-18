@@ -1,24 +1,32 @@
-<!-- Navbar !-->
-<div ng-include="'navbar.html'"></div>
+
+
+<!-- Movie Cover !-->
 <div class="jumbotron movie-cover"   back-img="{{image}}">
   <div class="gradient-layer">
       <div class="container"  style="height: 100%">
+        <!-- Title and Options Layout !-->
         <div layout="row" layout-align="space-between end"  style="height: 100%">
           <h1 class="mainTitle">{{movie.name}} </h1>
+          <!-- Options Row !-->
           <div layout="row" layout-align="space-between end"  style="height: 100%">
+            <!-- Edit Movie !-->
             <md-button class="md-icon-button">
               <md-icon md-svg-src= <%= asset_url("icons/edit.svg")%> aria-label="favorite" ng-click="edit()" style="color:white"></md-icon>
             </md-button>
-          <md-button>
+            <!-- Favorite Movie !-->
+            <md-button>
             <md-icon md-svg-src= <%= asset_url("icons/favorite.svg")%> aria-label="favorite"  style="color:white"></md-icon>
           </md-button>
           </div>
+
         </div>
         </div>
       </div>
 </div>
+
 <!-- Movie Information !-->
 <div class="container">
+
   <div layout="row" layout-align="start start"  style="height: 100%">
     <img class="movie-poster" flex="15" ng-src="{{movie.imgurl}}">
     <div>
@@ -29,17 +37,15 @@
     </div>
   </div>
 
-
-
-  <md-button ng-click="back()" >
-    &larr; Back
-  </md-button>
 </div>
+
+<!-- Movie Trailer !-->
 <div class="jumbotron">
   <videogular vg-theme="config.theme">
     <vg-media vg-src="config.sources">
     </vg-media>
 
+    <!-- Video Controllers !-->
     <vg-controls>
       <vg-play-pause-button></vg-play-pause-button>
       <vg-time-display>{{ currentTime | date:'mm:ss' }}</vg-time-display>
@@ -59,4 +65,7 @@
 </div>
 
 
-
+<!-- Navigation !-->
+<md-button ng-click="back()" >
+  &larr; Back
+</md-button>

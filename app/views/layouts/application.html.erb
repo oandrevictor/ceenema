@@ -12,7 +12,18 @@
 
   <body>
   <div ng-app="ceenema">
-  <%= yield %>
+    <div flex layout-fill>
+      <!-- Navbar !-->
+      <md-toolbar md-scroll-shrink>
+        <div ng-include="'navbar.html'"></div>
+      </md-toolbar>
+      <md-content flex style="height: 100vh;" md-theme="altTheme">
+      <%= yield %>
+      </md-content>
+    </div>
+
+
+
   </div>
   </body>
 </html>

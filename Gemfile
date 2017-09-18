@@ -65,3 +65,6 @@ end
 
 # CSRF
 gem 'angular_rails_csrf'
+
+# TOKEN -AUTH
+gem 'devise_token_auth'
