@@ -1,6 +1,7 @@
 # README
 
-This is an Movielist Web App.
+This is a Movielist Web App.
+Use of IMDB API to fetch movie data.
 Avaliable @ http://ceenema.herokuapp.com/
 
 Dependencies:
