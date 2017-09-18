@@ -9,9 +9,9 @@ Dependencies:
 * Ruby  (2.3.3)
 * Rails (5.1.4)
 * Node (6.11)
-* Postgresql
+* Postgresql <br />
 ** Use npm to:
-* Bower
+* Bower <br />
 *Use bower to:
 ** Angular
 To install dependencies: 
