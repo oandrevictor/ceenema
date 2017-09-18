@@ -15,6 +15,8 @@ module ReadAnalytics
         config.assets.paths << Rails.root.join("vendor","assets","bower_components","bootstrap-sass-official","assets","fonts")
         config.assets.paths << Rails.root.join("vendor","assets","bower_components","videogular-themes-default","fonts")
         config.assets.paths << Rails.root.join("vendor","assets","fonts")
+        config.assets.initialize_on_precompile = false
+
 
     config.assets.precompile << %r(.*.(?:eot|svg|ttf|woff|woff2)$)
 
