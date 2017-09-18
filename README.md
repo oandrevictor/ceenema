@@ -10,10 +10,10 @@ Dependencies:
 * Rails (5.1.4)
 * Node (6.11)
 * Postgresql
-Use npm to:
+** Use npm to:
 * Bower
-Use bower to:
-* Angular
+*Use bower to:
+** Angular
 To install dependencies: 
   rake run bower:install
 
