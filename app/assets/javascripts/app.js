@@ -73,7 +73,7 @@ ceenema.directive('backImg', function(){
 var run = function($scope) {
     $scope.spinner = {active: true};
 
-}
+};
 
 ceenema.run(run);
 run.$inject = ['$rootScope'];
