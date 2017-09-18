@@ -12,10 +12,11 @@
 .movie-cover{
     padding-bottom: 0px !important;
     background-position: center center;
-    height: 20em;
+    height: 35vh;
 }
 
 .movie-poster{
-    margin-right: 2em;
-
+    margin-right: 3vw;
+    max-height: 35vh;
+    max-width: 40vmin;
 }

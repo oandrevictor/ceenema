@@ -21,6 +21,9 @@ controllers.controller("MoviesController", [ '$scope', '$routeParams', '$locatio
         $scope.view = function (movieId) {
             $location.path("/movies/" + movieId)
         }
+        $scope.edit = function (movieId) {
+            $location.path("/movies/" + movieId+ "/edit");
+        }
 
         // Swiper Configuration:
 

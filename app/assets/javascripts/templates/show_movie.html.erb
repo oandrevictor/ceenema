@@ -15,7 +15,7 @@
             </md-button>
             <!-- Favorite Movie !-->
             <md-button>
-            <md-icon md-svg-src= <%= asset_url("icons/favorite.svg")%> aria-label="favorite"  style="color:white"></md-icon>
+            <md-icon md-svg-src= <%= asset_url("icons/favorite_full.svg")%> aria-label="favorite"  style="color:white"></md-icon>
           </md-button>
           </div>
 
@@ -28,7 +28,7 @@
 <div class="container">
 
   <div layout="row" layout-align="start start"  style="height: 100%">
-    <img class="movie-poster" flex="15" ng-src="{{movie.imgurl}}">
+    <img class="movie-poster" ng-src="{{movie.imgurl}}">
     <div>
       <p><b>Sinopse: </b>{{movie.sinopse}}</p>
       <p><b>Runtime: </b>{{movie.runtime}} minutes</p>

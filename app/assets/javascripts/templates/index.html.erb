@@ -3,12 +3,36 @@
 
 <treasure-overlay-spinner active='spinner.active'>
 <!-- Main Page Carousel Featured Movies !-->
-<ks-swiper-container ng-if="movies" on-ready="onReadySwiper(swiper)"  initial-slide="1" loop="false" show-nav-buttons="true" slides-per-view="1" space-between="1" pagination-is-active="true" pagination-clickable="true">
+<ks-swiper-container ng-if="movies" on-ready="onReadySwiper(swiper)"  initial-slide="1" loop="false" show-nav-buttons="true" slides-per-view="1" space-between="1" pagination-is-active="false" pagination-clickable="false">
   <ks-swiper-slide class="swiper-slide" back-img="{{movie.imgurl}}" ng-repeat="movie in movies" ng-click="view(movie.id)">
     <div class="gradient-layer" layout="row" layout-align="start end">
       <h1 class="mainTitle">{{movie.name}} </h1>    </div>
   </ks-swiper-slide>
 </ks-swiper-container>
+
+  <!-- Movie Cards !-->
+  <md-content class="md-padding" >
+    <div class="col-md-3" ng-repeat="movie in movies">
+      <md-card>
+        <img ng-src="{{movie.imgurl}}" class="md-card-image" alt="Washed Out">
+        <md-card-actions layout="row" layout-align="end center">
+          <p>{{movie.name}}</p>
+          <md-button class="md-icon-button" aria-label="Share">
+            <md-icon md-svg-src=<%= asset_url("icons/edit.svg")%> aria-label="favorite" ng-click="edit(movie.id)"></md-icon>
+          </md-button>
+          <md-button class="md-icon-button" aria-label="Favorite">
+            <md-icon md-svg-src=<%= asset_url("icons/favorite.svg")%> ></md-icon>
+          </md-button>
+          <md-button class="md-icon-button" aria-label="Settings">
+            <md-icon md-svg-src=<%= asset_url("icons/chevron.svg")%> ng-click="view(movie.id)"></md-icon>
+          </md-button>
+        </md-card-actions>
+
+      </md-card>
+    </div>
+
+
+  </md-content>
 
 
 </treasure-overlay-spinner>

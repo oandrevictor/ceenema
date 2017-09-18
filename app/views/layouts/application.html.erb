@@ -17,9 +17,12 @@
       <md-toolbar md-scroll-shrink>
         <div ng-include="'navbar.html'"></div>
       </md-toolbar>
-      <md-content flex style="height: 100vh;" md-theme="altTheme">
+
+      <!-- Fill page with the template content !-->
+      <md-content flex style="height: 100vh;" >
       <%= yield %>
       </md-content>
+
     </div>
 
 

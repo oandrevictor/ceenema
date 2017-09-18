@@ -17,7 +17,7 @@ ceenema = angular.module('ceenema',[
 ])
 
 ceenema.config([ '$routeProvider', '$locationProvider',
-  function($routeProvider, $locationProvider) {
+  function($routeProvider, $locationProvider, ) {
       $routeProvider
           .when('/',
               {
@@ -52,6 +52,7 @@ ceenema.config([ '$routeProvider', '$locationProvider',
       //$locationProvider.hashPrefix('')
   }
 
+
 ])
 
 ceenema.directive('backImg', function(){
@@ -67,6 +68,7 @@ ceenema.directive('backImg', function(){
 });
 
 
+
 //Spinner Initialization
 var run = function($scope) {
     $scope.spinner = {active: true};
@@ -75,5 +77,7 @@ var run = function($scope) {
 
 ceenema.run(run);
 run.$inject = ['$rootScope'];
+
+
 
 controllers = angular.module('controllers',[])

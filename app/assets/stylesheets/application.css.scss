@@ -52,8 +52,9 @@ md-input-container:not(.md-input-invalid).md-input-focused .md-input {
 // Icons //
 // Angular Material default icon color
 md-icon svg {
-  fill: white;
+  fill: inherit;
 }
+
 
 // Text CSS //
 // define main font, background color and fix height problems.
@@ -74,25 +75,22 @@ a:hover, a:visited, a:link, a:active
 }
 
 .jumbotron h1{
-  font-size: 40px;
+  font-size: 8vmin;
+}
+
+p{
+  font-size: 2vmin !important;
 }
 
 // Movie-card title
 .movieTitle{
-  font-size: 22px;
+  font-size: 1.53vw;
   background-color:rgba(0, 0, 0, 0.5);
   margin-bottom: 0px;
-  padding-bottom: 0.5em;
-  padding-top: 0.5em;
+  padding-bottom: 0.76vh;
+  padding-top: 0.76vh;
 }
 
-// Image CSS
-.center-cropped {
-  width: 200px;
-  height: 200px;
-  background-position: center center;
-  background-repeat: no-repeat;
-}
 
 
 //Layout
@@ -105,11 +103,11 @@ a:hover, a:visited, a:link, a:active
 
 .featuredMovie{
   width: 100%;
-  height:250px;
+  height:14vh;
   background-position: center;
   margin: 1em;
   background-color: black;
-  height: 200px;
+  height: 14vw;
 }
 
 .md-toolbar-tools{

@@ -16,9 +16,9 @@
 </div>
 
 
-<!-- Navbar !-->
-<div ng-include="'navbar.html'"></div>
+
 <treasure-overlay-spinner active='spinner.active' >
+  <!-- Movie Cover // Sets to default image is new movie !-->
   <div class="jumbotron movie-cover"   back-img="{{image}}">
     <div class="gradient-layer">
       <div class="container"  style="height: 100%">
@@ -28,10 +28,11 @@
       </div>
     </div>
   </div>
+
 <div class="container">
+  <!-- Form to create/edit Movie !-->
   <form  ng-submit="save()" >
     <div layout="row"  layout-align="center center"  >
-
     <md-input-container flex="40" class="md-block" >
         <input type="text" name="Title" ng-model="movie.name" placeholder="Title"/>
     </md-input-container>
