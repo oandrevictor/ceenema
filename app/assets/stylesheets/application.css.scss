@@ -23,11 +23,11 @@
 @import "videogular-themes-default/videogular";
 @font-face {
   font-family: 'videogular';
-  src:url('videogular.eot');
-  src:url('videogular.eot?#iefix') format('embedded-opentype'),
-  url('videogular.svg#videogular') format('svg'),
-  url('videogular.woff') format('woff'),
-  url('videogular.ttf') format('truetype');
+  src: font-url('videogular.eot');
+  src: font-url('videogular.eot?#iefix') format('embedded-opentype'),
+  font-url('videogular.svg#videogular') format('svg'),
+  font-url('videogular.woff') format('woff'),
+  font-url('videogular.ttf') format('truetype');
   font-weight: normal;
   font-style: normal;
 }

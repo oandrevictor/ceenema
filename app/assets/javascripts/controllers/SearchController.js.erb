@@ -27,10 +27,11 @@ controllers.controller("SearchController", [ '$scope', '$routeParams', '$locatio
                 }))
         }
         else {
+            $scope.spinner.active = true;
             Movie.query(
                 (function (results) {
                     $scope.movies = results
-                    getPosters();
+                    $scope.spinner.active = false;
                 }))
         }
 

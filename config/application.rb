@@ -14,7 +14,9 @@ module ReadAnalytics
         config.assets.paths << Rails.root.join("vendor","assets","bower_components")
         config.assets.paths << Rails.root.join("vendor","assets","bower_components","bootstrap-sass-official","assets","fonts")
         config.assets.paths << Rails.root.join("vendor","assets","bower_components","videogular-themes-default","fonts")
-        config.assets.precompile << %r(.*.(?:eot|svg|ttf|woff|woff2)$)
+        config.assets.paths << Rails.root.join("vendor","assets","fonts")
+
+    config.assets.precompile << %r(.*.(?:eot|svg|ttf|woff|woff2)$)
 
 
     # Settings in config/environments/* take precedence over those specified here.
