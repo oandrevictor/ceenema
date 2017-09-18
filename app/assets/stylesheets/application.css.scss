@@ -21,8 +21,16 @@
 @import "angular-material/modules/scss/angular-material";
 @import "angular-treasure-overlay-spinner/src/treasure-overlay-spinner";
 @import "videogular-themes-default/videogular";
-//@import "videogular-themes-default/fonts/videogular.ttf";
-//@import "videogular-themes-default/fonts/videogular.woff";
+@font-face {
+  font-family: 'videogular';
+  src:url('videogular.eot');
+  src:url('videogular.eot?#iefix') format('embedded-opentype'),
+  url('videogular.svg#videogular') format('svg'),
+  url('videogular.woff') format('woff'),
+  url('videogular.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
 
 @import url('https://fonts.googleapis.com/css?family=Work+Sans');
 @import url('https://fonts.googleapis.com/css?family=Roboto:300,400,500,700');
