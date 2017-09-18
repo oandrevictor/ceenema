@@ -13,7 +13,7 @@ Dependencies:
 ** Use npm to:
 * Bower <br />
 *Use bower to:
-** Angular
+** Angular (v1.6.6)
 To install dependencies: 
   rake run bower:install
 
