@@ -1,0 +1,71 @@
+
+
+<!-- Movie Cover !-->
+<div class="jumbotron movie-cover"   back-img="{{image}}">
+  <div class="gradient-layer">
+      <div class="container"  style="height: 100%">
+        <!-- Title and Options Layout !-->
+        <div layout="row" layout-align="space-between end"  style="height: 100%">
+          <h1 class="mainTitle">{{movie.name}} </h1>
+          <!-- Options Row !-->
+          <div layout="row" layout-align="space-between end"  style="height: 100%">
+            <!-- Edit Movie !-->
+            <md-button class="md-icon-button">
+              <md-icon md-svg-src= /assets/icons/edit-9bc24ae346b7d9cca0c7581b4eab2904e86bc0f815b07aaac22701e87c9d8389.svg aria-label="favorite" ng-click="edit()" style="color:white"></md-icon>
+            </md-button>
+            <!-- Favorite Movie !-->
+            <md-button>
+            <md-icon md-svg-src= /assets/icons/favorite_full-6e5dbca287c9af8d890241d37565f3f247020b77febef1a307f28d850c778c1a.svg aria-label="favorite"  style="color:white"></md-icon>
+          </md-button>
+          </div>
+
+        </div>
+        </div>
+      </div>
+</div>
+
+<!-- Movie Information !-->
+<div class="container">
+
+  <div layout="row" layout-align="start start"  style="height: 100%">
+    <img class="movie-poster" ng-src="{{movie.imgurl}}">
+    <div>
+      <p><b>Sinopse: </b>{{movie.sinopse}}</p>
+      <p><b>Runtime: </b>{{movie.runtime}} minutes</p>
+      <p><b>Genre:</b> {{movie.genre}}</p>
+      <p><b>Release: </b>{{movie.release}}</p>
+    </div>
+  </div>
+
+</div>
+
+<!-- Movie Trailer !-->
+<div class="jumbotron">
+  <videogular vg-theme="config.theme">
+    <vg-media vg-src="config.sources">
+    </vg-media>
+
+    <!-- Video Controllers !-->
+    <vg-controls>
+      <vg-play-pause-button></vg-play-pause-button>
+      <vg-time-display>{{ currentTime | date:'mm:ss' }}</vg-time-display>
+      <vg-scrub-bar>
+        <vg-scrub-bar-current-time></vg-scrub-bar-current-time>
+      </vg-scrub-bar>
+      <vg-time-display>{{ timeLeft | date:'mm:ss' }}</vg-time-display>
+      <vg-volume>
+        <vg-mute-button></vg-mute-button>
+        <vg-volume-bar></vg-volume-bar>
+      </vg-volume>
+      <vg-fullscreen-button></vg-fullscreen-button>
+    </vg-controls>
+
+    <vg-overlay-play></vg-overlay-play>
+  </videogular>
+</div>
+
+
+<!-- Navigation !-->
+<md-button ng-click="back()" >
+  &larr; Back
+</md-button>

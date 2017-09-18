@@ -1,0 +1,19 @@
+
+<!-- Main Content !-->
+<md-content flex style="height: 100vh;" md-theme="altTheme">
+
+<treasure-overlay-spinner active='spinner.active' ng-if="movies">
+  <div class="container">
+      <h1 class="text-center h2">{{movies.length}} Movies Found</h1>
+      <!-- Create card for each movie in the collection !-->
+      <div ng-repeat="movie in movies">
+        <section class="col-md-6">
+          <div class="featuredMovie" back-img="{{movie.imgurl}}" ng-click="view(movie.id)">
+            <div layout="row" layout-align="start end" style="height: 100%">
+            <p class="movieTitle col-md-12 text-left"><a style ="color: white" href ng-click="view(movie.id)" >{{movie.name}}</a></p>
+            </div>
+          </div>
+        </section>
+      </div>
+  </div>
+</treasure-overlay-spinner>

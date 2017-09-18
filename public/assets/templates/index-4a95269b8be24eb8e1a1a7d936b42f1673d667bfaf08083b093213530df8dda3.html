@@ -1,0 +1,40 @@
+
+
+
+<treasure-overlay-spinner active='spinner.active'>
+<!-- Main Page Carousel Featured Movies !-->
+<ks-swiper-container ng-if="movies" on-ready="onReadySwiper(swiper)"  initial-slide="1" loop="false" show-nav-buttons="true" slides-per-view="1" space-between="1" pagination-is-active="false" pagination-clickable="false">
+  <ks-swiper-slide class="swiper-slide" back-img="{{movie.imgurl}}" ng-repeat="movie in movies" ng-click="view(movie.id)">
+    <div class="gradient-layer" layout="row" layout-align="start end">
+      <h1 class="mainTitle">{{movie.name}} </h1>    </div>
+  </ks-swiper-slide>
+</ks-swiper-container>
+
+  <!-- Movie Cards !-->
+  <md-content class="md-padding" >
+    <div class="col-md-3" ng-repeat="movie in movies">
+      <md-card>
+        <img ng-src="{{movie.imgurl}}" class="md-card-image" alt="Washed Out">
+        <md-card-actions layout="row" layout-align="end center">
+          <p>{{movie.name}}</p>
+          <md-button class="md-icon-button" aria-label="Share">
+            <md-icon md-svg-src=/assets/icons/edit-9bc24ae346b7d9cca0c7581b4eab2904e86bc0f815b07aaac22701e87c9d8389.svg aria-label="favorite" ng-click="edit(movie.id)"></md-icon>
+          </md-button>
+          <md-button class="md-icon-button" aria-label="Favorite">
+            <md-icon md-svg-src=/assets/icons/favorite-8f30e717a6082febf2350914cf5e1934ade6bacbd1328285e140c016a36400b3.svg ></md-icon>
+          </md-button>
+          <md-button class="md-icon-button" aria-label="Settings">
+            <md-icon md-svg-src=/assets/icons/chevron-f210e7a28abbfaef39bd09abcaa86da1a06e19f73b29cccae0bf695d2cd7ddab.svg ng-click="view(movie.id)"></md-icon>
+          </md-button>
+        </md-card-actions>
+
+      </md-card>
+    </div>
+
+
+  </md-content>
+
+
+</treasure-overlay-spinner>
+
+

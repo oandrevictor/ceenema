@@ -1,0 +1,78 @@
+<!-- The overlay -->
+
+<div id="imdbOverlay" class="overlay">
+
+  <!-- Button to close the overlay navigation -->
+  <div class="closebtn" ng-click="closeNav()">&times;</div>
+  <!-- Overlay content -->
+  <div layout="column"  layout-align="center center"  style="height: 100%">
+    <h3>You can write the movie's imdb id and we will load the information for you.</h3>
+    <md-input-container  class="md-block"  >
+      <input type="text" name="ID IMDB" ng-model="movie.imdb_id" placeholder="ID IMDB"/>
+    </md-input-container>
+    <md-button  ng-click="preload()" class="md-button" aria-label="More"> Load </md-button>
+
+  </div>
+</div>
+
+
+
+<treasure-overlay-spinner active='spinner.active' >
+  <!-- Movie Cover // Sets to default image is new movie !-->
+  <div class="jumbotron movie-cover"   back-img="{{image}}">
+    <div class="gradient-layer">
+      <div class="container"  style="height: 100%">
+        <div layout="row" layout-align="space-between end"  style="height: 100%">
+          <h1 class="mainTitle">{{movie.name}} </h1>
+        </div>
+      </div>
+    </div>
+  </div>
+
+<div class="container">
+  <!-- Form to create/edit Movie !-->
+  <form  ng-submit="save()" >
+    <div layout="row"  layout-align="center center"  >
+    <md-input-container flex="40" class="md-block" >
+        <input type="text" name="Title" ng-model="movie.name" placeholder="Title"/>
+    </md-input-container>
+
+    <md-input-container  flex="20" class="md-block" >
+      <input type="text" name="ID IMDB" ng-model="movie.imdb_id" placeholder="ID IMDB"/>
+    </md-input-container>
+
+    </div>
+    <div layout="row"  layout-align="center center"  style="width: 100%">
+
+    <md-input-container   flex="60" class="md-block" style="width: 100%">
+      <textarea  name="Sinopse" md-maxlength="300" rows="3" ng-model="movie.sinopse" placeholder="Sinopse"/>
+    </md-input-container>
+    </div>
+    <div layout="row"  layout-align="center center"  >
+    <md-input-container   flex="20" class="md-block" >
+      <input type="text" name="Gender" ng-model="movie.genre" placeholder="Genre"/>
+    </md-input-container>
+
+    <md-input-container   flex="20" class="md-block" >
+      <input type="number" name="Runtime" ng-model="movie.runtime" placeholder="Runtime"/>
+    </md-input-container>
+
+      <md-input-container   flex="20" class="md-block" >
+        <label>Release</label>
+        <md-datepicker  md-hide-icons="calendar" ng-model="movie.release" md-placeholder="Enter date" style="fill: #000000"></md-datepicker>
+      </md-input-container>
+    </div>
+    <div layout="row"  layout-align="center center"  >
+    <md-input-container flex="60" class="md-block" >
+      <input type="text" name="Trailer" ng-model="movie.trailer" placeholder="Trailer"/>
+    </md-input-container>
+    </div>
+
+    <div layout="row"  layout-align="center center"  >
+      <md-button  ng-click="cancel()" class="md-button" aria-label="More" > Cancel </md-button>
+      <md-button  ng-click="save()" class="md-button" aria-label="More" > Save </md-button>
+
+    </div>
+  </form>
+</div>
+</treasure-overlay-spinner>
