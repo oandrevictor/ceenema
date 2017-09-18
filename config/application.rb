@@ -6,7 +6,6 @@ require 'rails/all'
 # you've limited to :test, :development, or :production.
 Bundler.require(*Rails.groups)
 
-config.assets.initialize_on_precompile = false
 module ReadAnalytics
   class Application < Rails::Application
     # Initialize configuration defaults for originally generated Rails version.
@@ -16,7 +15,6 @@ module ReadAnalytics
     config.assets.paths << Rails.root.join("vendor","assets","bower_components")
         config.assets.paths << Rails.root.join("vendor","assets","bower_components","bootstrap-sass-official","assets","fonts")
         config.assets.paths << Rails.root.join("vendor","assets","bower_components","videogular-themes-default","fonts")
-        config.assets.paths << Rails.root.join("vendor","assets","fonts")
 
 
     config.assets.precompile << %r(.*.(?:eot|svg|ttf|woff|woff2)$)
